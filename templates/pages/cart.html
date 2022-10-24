@@ -1,0 +1,313 @@
+---
+cart: true
+---
+{{#partial "page"}}
+
+<style type="text/css" media="all">
+    h1.page-heading {
+        color: #132448;
+        text-transform: capitalize;
+        font-weight: 600;
+        margin: 4rem 0 3rem;
+    }
+    .breadcrumb{
+        display: none;
+    }
+    .body {
+        margin-top: 0;
+    }
+    .page{
+        width: 88%;
+        margin: 0 auto 4rem;
+    }
+    .cart-header{
+        background: #132448;
+    }
+    .cart-header-item{
+        color: #fff;
+        font-family: Montserrat, sans-serif !important;
+    }
+    .cart-item{
+        background: #fff;
+    }
+    .cart-body .cart-item-name__label{
+        font-weight: bold;
+    }
+    .cart-body td.cart-item-block.cart-item-info .cart-item-value {
+        color: #132448;
+        font-weight: bold;
+        font-size: 18px;
+        font-family: Montserrat, sans-serif !important;
+    }
+    .definitionList-value {
+        font-weight: bold;
+        font-family: Montserrat, sans-serif !important;
+    }
+    li.cart-total div strong {
+        font-weight: bold !important;
+        font-size: 18px;
+        color: #333;
+        font-family: Montserrat, sans-serif !important;
+    }
+    .cart-total-value span {
+        color: #132448;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: Montserrat, sans-serif !important;
+    }
+    button.coupon-code-add {
+        color: #132448;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: Montserrat, sans-serif !important;
+    }
+    .cart-actions a.button.button--primary {
+        background: #264da3;
+        border-color: #264da3;
+        font-family: Montserrat, sans-serif !important;
+    }
+    .cart-actions a.button.button--primary:hover {
+        background: #132448;
+        border-color: #132448;
+        text-decoration: none;
+    }
+    .cart-total-value span:hover, button.coupon-code-add:hover{
+        background: transparent !important;
+        color: #264da3;
+        text-decoration: none;
+    }
+    td.cart-item-block.cart-item-title a[data-item-edit] {
+        color: #264da3;
+        font-size: 18px;
+    }
+    a.affirm-modal-trigger {
+        color: #264da3;
+    }
+    
+    .stamped-section{
+        display: flex;
+        align-items: center;
+    }
+    .stamped-section div{
+        width: 50%;
+    }
+    .stamped-con {
+        float: left;
+        width: 45.66667%;
+    }
+    .stamped-con .vertical {
+        border-left: 3px solid #ff672e;
+        height: 80px;
+        margin: 0.7rem 0 0;
+        width: 2%;
+    }
+    .d-flex-payment{
+        display: flex;
+        justify-content: flex-start;
+        margin: 0rem 0 0;
+    }
+    .d-flex-payment img{
+        width: 65px;
+        padding: 0 8px;
+        height: 32px;
+    }
+    .d-flex-payment img:last-child {
+        padding-right: 0;
+        width: 58px;
+    }
+    .horizontal{
+        border-bottom: 1px solid #e5e5e5;
+        float: right;
+        width: 45.66667%;
+    }
+    .cart-actions {
+        padding-bottom: 1rem;
+        width: 45.66667%;
+        display: flex;
+        margin: 0 0 0 auto;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #e5e5e5;
+        padding-top: 1rem;
+    }
+    .cart-actions div{
+        width: 50% !important;
+    }
+    .d-flex-payment img:first-child {
+        padding-left: 0;
+    }
+    div#afffirm-promo-box {
+        text-align: left !important;
+    }
+    .cart-actions a {
+        margin-left: auto;
+    }
+    p.affirm-as-low-as {
+        margin: 0 !important;
+    }
+    .cart-totals{
+        margin-bottom: 0;
+    }
+    @media (min-width: 1261px){
+        .cart-totals {
+            width: 45.66667%;
+        }
+    }
+
+    @media (max-width: 1260px){
+        .stamped-con{
+            float:right;
+            width: 61.66667%;
+        }
+        .horizontal{
+            width: 58.3333333333%;
+        }
+        .cart-actions {
+            width: 58.3333333333%;
+        }
+        
+    }
+        
+    @media (max-width: 800px){
+        h1.page-heading{
+            font-size: 26px;
+        }
+        .stamped-con{
+            width: 100%;
+        }
+        .cart-actions {
+            width: 100%;
+        }
+    }
+    @media (max-width: 550px){
+        .horizontal{
+            width: 0%;
+        }
+        .cart-actions{
+            flex-direction: column;
+            row-gap: 1.5rem;
+        }
+    }
+
+</style>
+<div class="page">
+
+    <main class="page-content" data-cart>
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+        {{> components/cart/page-title}}
+
+        <div data-cart-status>
+            {{> components/cart/status-messages}}
+        </div>
+
+        {{#if cart.items.length}}
+            <div class="loadingOverlay"></div>
+
+            <div onclick="StampedFn.loadBadges()"></div>
+
+            <div data-cart-content class="cart-content-padding-right">
+                {{> components/cart/content}}
+            </div>
+
+            <div data-cart-totals class="cart-content-padding-right">
+                <div class="stamped-con">
+                    <div class="stamped-section">
+                        <div class="stamped-logo">
+                            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/stamped-io-logo.png'}}" alt="">
+                        </div>
+                        <div class="vertical"></div>
+                        <div class="overview-summary">
+                            <img src="https://stamped.io/inc/image/badges.png?apikey=pubkey-2L5A8636KNO175w7kxJ92V55UDvpz3&sId=116574&type=badge2&label1=&label2=" />
+                        </div>
+                    </div>
+                </div>
+                {{> components/cart/totals}}
+                
+            </div>
+
+            {{{region name="cart_below_totals"}}}
+            
+
+            {{#if cart.show_primary_checkout_button}}
+                <div class="cart-actions cart-content-padding-right">
+                    <div class="d-flex-payment">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/paypal-payment.png'}}" alt="">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/mastercard-payment.png'}}" alt="">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/visa-payment.png'}}" alt="">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/amex-payment.png'}}" alt="">
+                    </div>
+                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">{{lang 'cart.checkout.button'}}</a>
+                    {{#if cart.show_multiple_address_shipping}}
+                        <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                            {{lang 'cart.preview.checkout_multiple'}}
+                        </a>
+                    {{/if}}
+                </div>
+            {{else}}
+
+                <div class="cart-actions cart-content-padding-right">
+                        <div class="d-flex-payment">
+                            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/paypal-payment.png'}}" alt="">
+                            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/mastercard-payment.png'}}" alt="">
+                            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/visa-payment.png'}}" alt="">
+                            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/amex-payment.png'}}" alt="">
+                        </div>
+                    <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                </div>
+            {{/if}}
+
+            {{#if cart.additional_checkout_buttons}}
+                <div class="cart-additionalCheckoutButtons cart-content-padding-right">
+
+                    {{#each cart.additional_checkout_buttons}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+            {{/if}}
+        {{else}}
+            <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
+        {{/if}}
+
+
+
+    </main>
+</div>
+{{/partial}}
+
+<script>
+// API HELPERS
+  function getCartAPI(url) {
+    return fetch(url, {
+      method: "GET",
+      credentials: "same-origin"
+    })
+      .then(response => response.json());
+  };
+  function addCouponAPI(url, cartId, data) {
+    return fetch(url + cartId + `/coupons`, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json());
+  };
+ 
+  // ADD COUPON CODE
+  async function addCouponCode(coupon) {
+    await getCartAPI('/api/storefront/carts')
+      .then(data => cartData = data[0]); // Capture parsed data in cartData
+    var cartId = cartData['id']; // Set Cart ID
+ 
+    addCouponAPI(`/api/storefront/checkouts/`, cartId, {
+      "couponCode": coupon
+    })
+      .then(console.log('Added Coupon:' + coupon))
+      .catch(error => console.error(error));
+  }
+</script>
+
+{{> layout/base}}

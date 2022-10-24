@@ -1,0 +1,131 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+        limit: {{theme_settings.homepage_top_products_count}}
+    reviews: true
+
+carousel: {{theme_settings.homepage_show_carousel}}
+
+blog:
+    recent_posts:
+        limit: 4 
+---
+{{#partial "hero"}}
+    {{{region name="home_below_menu"}}}
+    {{#and carousel carousel.slides.length}}
+        {{> components/carousel arrows=theme_settings.homepage_show_carousel_arrows play_pause_button=theme_settings.homepage_show_carousel_play_pause_button}}
+    {{/and}}
+    {{{region name="home_below_carousel"}}}
+    {{> aoc-custom/components/page/custom-homepage }}
+
+
+
+{{/partial}}
+
+{{#partial "page"}}
+<style>
+    .slick-next, .slick-prev {
+        width: 2.8rem;
+        border-radius: 100%;
+        height: 3rem;
+    }
+    
+    .flex-mattrees-section.us.w-96.mt-3 {
+    background-repeat: no-repeat;
+    height: auto;
+    background: url("https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/is-parallax-pattern-bg.png?t=1647995595&_gl=1*qnpn72*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0Nzk5NTUyMi41NC4xLjE2NDc5OTU2MDAuNTg.")!important;
+    background-size: contain!important;
+    position: relative;
+    background-attachment: fixed!important;
+    transform-style: preserve-3d;
+    perspective: 1px;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 800px){
+    .shop-best-seller .best-sgrid .best-sbox:last-child{
+        margin: 0 auto;
+    }
+}
+
+</style>
+
+{{/partial}}
+{{> layout/homepage-base}}
+<script>
+  $('#timeouttest').click(function(){
+    setTimeout(function(){
+    //   window.open('https://icon-sleep.com/10-king-coolest-gel-memory-foam-mattress/', '_blank');
+    },500)
+  });
+</script>
+
+
+<style>
+    div#rightabsolute-1 {
+        position: absolute;
+        right: 5%;
+        top: 10%;
+    }
+    div#rightabsolute-0 {
+        position: absolute;
+        right: 30%;
+        top: 10%;
+    }
+    div#rightabsolute-0 img {
+        height: 500px;
+    }
+    div#rightabsolute-1 img {
+        height: 500px;
+    }
+    
+    @media screen and (max-width: 1422px) {
+        div#rightabsolute-0 {
+            right: 32.5%;
+        }
+    }
+
+    @media screen and (max-width: 1309px) {
+        div#rightabsolute-0 img {
+            height: 450px;
+        }
+        div#rightabsolute-1 img {
+            height: 450px;
+        }
+    
+    }
+    @media screen and (max-width: 1200px) {
+        div#rightabsolute-0 img {
+            height: 400px;
+        }
+        div#rightabsolute-1 img {
+            height: 400px;
+        }
+    }
+
+    @media screen and (max-width: 1080px) {
+        div#rightabsolute-0 img {
+            height: 375px;
+        }
+        div#rightabsolute-1 img {
+            height: 375px;
+        }
+    }
+    </style>
+    
+    
+<script>
+    $(document).ready(function(){
+        $img = $("#rightabsolute-0 img").html();
+        $("<a href='https://icon-sleep.com/10-king-coolest-gel-memory-foam-mattress/' target='_blank'>").insertBefore($("#rightabsolute-0 img"));
+        $("#rightabsolute-0 a").append($("#rightabsolute-0 img"));
+
+        $img = $("#rightabsolute-1 img").html();
+        $("<a href='https://icon-sleep.com/12-coolest-gel-memory-foam-mattress-king/' target='_blank'>").insertBefore($("#rightabsolute-1 img"));
+        $("#rightabsolute-1 a").append($("#rightabsolute-1 img"));
+    });
+</script>

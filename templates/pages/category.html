@@ -1,0 +1,191 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+<style>
+    .categ-body .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    span.stamped-product-reviews-badge {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #f3f3f3;
+        border-radius: 23px;
+    }
+    .stamped-badge {
+        padding: 0.5rem;
+    }
+</style>
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{#if category.image}}
+    {{> components/common/responsive-img
+        image=category.image
+        fallback_size=theme_settings.zoom_size
+        lazyload=theme_settings.lazyload_mode
+        class="category-header-image"
+    }}
+{{/if}}
+{{#unless theme_settings.hide_category_page_heading }}
+    <h1 class="page-heading">{{category.name}}</h1>
+    {{{region name="category_below_header"}}}
+{{/unless}}
+{{{category.description}}}
+<div class="page" style="max-width: 85%; margin: 0 auto;">
+    <!-- SubCategories Image Banner -->
+
+        <div class="care-banner faqs-banner mt-0 subcateg-banner">
+            <img src="{{cdn (concat 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/' (concat (concat (toLowerCase (dashcase category.name)) '-sub-banner') '.png'))}}" alt="No image">
+        
+            <div class="faqs-abs-content">
+            <h1 style="text-transform: capitalize; font-weight: 600;">
+                {{#if (lowercase category.name) '==' 'metal frames'}}
+                    Metal Bed Frames
+                {{else if (lowercase category.name) '==' 'platform beds'}}
+                    Platform Bed Frames
+                {{else if (lowercase category.name) '==' 'adjustable frames'}}
+                    Adjustable Bed Frames
+                {{else if (lowercase category.name) '==' 'pillows'}}
+                    Bed Pillows
+                {{else}}
+                    {{category.name}}
+                {{/if}}
+            </h1>
+            </div>
+        </div>
+    
+    
+    <main class="page-content" id="product-listing-container">
+
+        {{> components/category/product-listing}}
+        {{{region name="category_below_content"}}}
+        
+        <div class="parallax-section" style="background: url('{{cdn (concat 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/' (concat (concat (toLowerCase (dashcase category.name)) '-parallax') '.png'))}}')">
+            {{#if (lowercase category.name) '==' 'platform beds'}}
+                <h2 class="h2">Goodbye, <b>box springs</b></h2>
+                 <h2 class="h2" style="margin-top:0;">Hello, <b>platform beds.</b></h2>
+                <p style="text-align:center">Transform the way you compliment your mattress by updating the second most<br> important furniture in your room: your bed frame.</p>
+            {{else if (lowercase category.name) '==' 'blankets'}}
+                <h2 class="h2">Wrap up yourself in</h2>
+                 <h2 class="h2" style="margin-top:0;"><b>soothing comfort</b></h2>
+                <p style="text-align:center">Improve your sleep with our weighted blankets<br/> that help you maximize relaxation during sleep.</p>
+            {{else if (lowercase category.name) '==' 'mattress protector'}}
+                <h2 class="h2">Protect your mattress</h2>
+                 <h2 class="h2" style="margin-top:0;"><b>from the elements</b></h2>
+                <p style="text-align:center">Accessorize your precious mattress with our<br/> protectors that help prolong your mattress’ lifespan.</p>    
+            {{else if (lowercase category.name) '==' 'pillows'}}
+                <h2 class="h2">Turn your pillow fights</h2>
+                 <h2 class="h2" style="margin-top:0;"><b>into cuddle nights</b></h2>
+                <p style="text-align:center">Make every pillow fight fun and cuddly with<br/> our ergonomic and modern pillows.</p>  
+            {{else if (lowercase category.name) '==' 'sheets'}}
+                <h2 class="h2">Beautiful bed sheets</h2>
+                 <h2 class="h2" style="margin-top:0;"><b>for mood-boosting sleeps</b></h2>
+                <p style="text-align:center">Whether you like being warm or cool in bed,<br/> our bed sheets don’t fail to give you good sleep.</p>     
+            {{else}}
+                <h2 class="h2">The Very Best in<br/> <b>Comfort and Support</b></h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br/> Sed reprehenderit nulla reiciendis, labore vero iure.
+                </p>
+            {{/if}}
+
+        </div>
+
+        <h2 class="category-related">Related Categories</h2>
+        <div class="shop-best-seller w-100">
+            <div class="best-sgrid grid-sub">
+                <div class="best-sbox">
+                    <a href="/bedding/blankets/" target="_blank" class="p-0 m-0 no-decor"><img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/related-blankets.png" alt="" class="w-100"></a>
+                    <span class="price-container">Starts at $29.99</span>
+                    <div class="category--action">
+                        <a href="/bedding/blankets/" target="_blank" class="p-0 m-0 no-decor"><h4 class="mt-0">Blankets</h4></a>
+                        <a href="/bedding/blankets/" target="_blank" class="grid-action">Shop</a>
+                    </div>
+        
+                </div>
+                <div class="best-sbox">
+                    <a href="/bedding/mattress-protector/" target="_blank" class="p-0 m-0 no-decor"><img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/related-mattress-protector.png" alt="" class="w-100"></a>
+                    <span class="price-container">Starts at $49.99</span>
+                    <div class="category--action">
+                        <a href="/bedding/mattress-protector/" target="_blank" class="p-0 m-0 no-decor"><h4 class="mt-0">Mattress Protector</h4></a>
+                        <a href="/bedding/mattress-protector/" target="_blank" class="grid-action">Shop</a>
+                    </div>
+                </div>
+                <div class="best-sbox">
+                    <a href="/bedding/sheets/" target="_blank" class="m-0 p-0 no-decor"><img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/related-sheets.png" alt="" class="w-100"></a>
+                    <span class="price-container">Starts at $79.99</span>
+                    <div class="category--action">
+                        <a href="/bedding/sheets/" target="_blank" class="p-0 m-0 no-decor"><h4 class="mt-0">Sheets</h4></a>
+                        <a href="/bedding/sheets/" target="_blank" class="grid-action">Shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+
+
+{{/partial}}
+{{> layout/base}}
+
+<script>
+    var listItems = $(".productGrid").find("li.product").length;
+    console.log(listItems);
+    $("#gridCount .totalGrid").append(listItems);
+
+    $('ul.selectdropdown').each(function(){
+        var list=$(this),
+        select=$(document.createElement('select')).insertBefore($(this).hide()).change(function(){
+            window.location.href=$(this).val();
+        });
+
+        $('>li a', this).each(function(){
+        var option=$(document.createElement('option'))
+        .appendTo(select)
+        .val(this.href)
+        .html($(this).html());
+        if($(this).attr('class') === 'selected'){
+            option.attr('selected','selected');
+        }
+        });
+       
+    });
+
+
+    $(document).ready(function(){
+        // $("p.affirm-as-low-as").parent().attr('id', 'affirmbox-container');     
+        
+        if($(".care-banner.faqs-banner.mt-0.subcateg-banner img[src*='frames']")){
+            $(".care-banner.faqs-banner.mt-0.subcateg-banner").css("margin-bottom","3rem");
+        }
+        if($(".care-banner.faqs-banner.mt-0.subcateg-banner img[src*='platform']")){
+            $(".care-banner.faqs-banner.mt-0.subcateg-banner").css("margin-bottom","3rem");
+        }
+        
+
+        
+        $('.stamped-badge[data-rating="0.0"]').parent().addClass("d-none");
+        console.log($('.stamped-badge[data-rating="0.0"]').parent());
+    });
+
+    </script>
+
+

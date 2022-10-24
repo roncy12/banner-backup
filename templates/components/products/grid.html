@@ -1,0 +1,15 @@
+<ul class="productGrid">
+    {{#if category.subcategories}}
+        {{#each products}}
+            <li class="product">
+                    {{>components/products/sub-card settings=../settings show_compare=../show_compare show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event position=(add @index 1)}}
+            </li>
+        {{/each}}
+    {{else}}
+        {{#each products}}
+            <li class="product">
+                    {{>components/products/sub-card settings=../settings show_compare=../show_compare show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event=../event position=(add @index 1)}}
+            </li>
+        {{/each}}
+    {{/if}}
+</ul>

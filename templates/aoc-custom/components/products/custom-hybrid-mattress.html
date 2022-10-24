@@ -1,0 +1,762 @@
+<div class="productView grn-matt-page" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
+
+        {{#each product.reviews.messages}}
+            {{#if error}}
+                {{> components/common/alert/alert-error error}}
+            {{/if}}
+            {{#if success}}
+                {{> components/common/alert/alert-success success}}
+            {{/if}}
+        {{/each}}
+     
+    
+        <section class="productView-images" data-image-gallery>
+        {{!--
+            Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
+            for variant/rule image replacement
+        --}}
+        {{#if product.images.length '>' 1 }}
+        {{> components/carousel-content-announcement}}
+        {{/if}}
+        <figure class="productView-image"
+                data-image-gallery-main
+                {{#if product.main_image}}
+                data-zoom-image="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size }}"
+                {{/if}}
+                >
+            <div class="productView-img-container-1" style="width: 95%;">
+                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                {{#if product.main_image}}
+                    <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
+                        target="_blank"{{#if schema}} itemprop="image"{{/if}}>
+                {{/if}}
+                {{> components/common/responsive-img
+                    image=product.main_image
+                    class="productView-image--default"
+                    fallback_size=theme_settings.product_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                    otherAttributes="data-main-image"
+                }}
+                {{!-- Remove the surrounding a-element if there is no main image. --}}
+                {{#if product.main_image}}
+                    </a>
+                {{/if}}
+            </div>
+        </figure>
+        <ul class="productView-thumbnails" {{#gt product.images.length 4}} {{/gt}}>
+            {{#each product.images}}
+                <li class="productView-thumbnail">
+                    <a
+                        class="productView-thumbnail-link"
+                        href="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                        data-image-gallery-item
+                        data-image-gallery-new-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                        data-image-gallery-new-image-srcset="{{getImageSrcset this use_default_sizes=true}}"
+                        data-image-gallery-zoom-image-url="{{getImageSrcset this (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}"
+                    >
+                    {{> components/common/responsive-img
+                        image=this
+                        fallback_size=../theme_settings.productview_thumb_size
+                        lazyload=../theme_settings.lazyload_mode
+                    }}
+                    </a>
+                </li>
+            {{/each}}
+
+        </ul>
+        <script>
+            $(document).ready(function(){
+                $(".productView-thumbnails").slick({
+                    "infinite": false,
+                    "mobileFirst": true,
+                    "dots": false,
+                    "accessibility": false,
+                    "slidesToShow": 5,
+                    "slidesToScroll": 5,
+                    "vertical": true,
+                    "verticalSwiping": true,
+                    responsive: [
+                        {
+                            breakpoint: 900,
+                            settings: {
+                                "infinite": false,
+                                "mobileFirst": true,
+                                "dots": false,
+                                "accessibility": false,
+                                "slidesToShow": 5,
+                                "slidesToScroll": 5,
+                                "vertical": true,
+                                "verticalSwiping": true,
+                            }
+                        },
+                        {
+                            breakpoint: 0,
+                            settings: {
+                                "slidesToShow": 4,
+                                "slidesToScroll": 4,
+                                "vertical": false,
+                                "verticalSwiping": false
+                            }
+                        }
+                    ]
+                    
+                })
+            });
+        </script>
+    </section>
+          <section class="productView-details green-matt-details">
+
+            <div class="productView-product green-matt-prod">
+
+                <div class="custom-productTitle green-matt-title stamped-display">
+                    <div class="d-flex justify-content-between brand-sku">
+                        <div class="brand-name"><p class="my-0">{{product.brand.name}}</p></div>
+                        <div class="sku-name"> <span class="prod-sku"><p class="my-0"><b>SKU:</b> {{product.sku}}</p></span></div>
+                    </div>
+
+                    <h1 class="productView-title mt-2" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+                    <a id="rev-link" style="float: unset; width: auto">
+                        <div  class="stamp-container bottom-space-10" style="display:flex;align-items: center;justify-content: unset;">
+                            <div style="margin-bottom:0;">
+                                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                            </div>
+                            <span id="label_reviews" style="margin-left:3%;">
+                                (No ratings yet)
+                            </span>
+                            <!-- <span class="prod-sku ml-5"><b>SKU: {{product.sku}}</b></span> -->
+                        </div>
+                    </a>
+                    <a id="rev-link" class="d-none"> 
+                        <img src="https://stamped.io/inc/image/stars.png?apikey=pubkey-2L5A8636KNO175w7kxJ92V55UDvpz3&sId=116574&productId={{product.id}}" class="ml-img"/>
+                    </a>
+                    <!-- <a onclick="StampedFn.toggleForm('review')" class="ml-2" style="text-decoration: underline;">Write a review</a> -->
+                    <!-- <div id="stamped-reviews-widget" style="display: inline-block;" data-widget-type="site-badge" data-badge-type="minimal" data-title="Verified Reviews" data-title-size="15" data-size-stars="12" data-element-id="1" data-lang="en"  data-product-id="{{ product.id }}"  ></div> -->
+                    <!-- {{#if product.brand}}
+                        <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+                            <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                        </h2>
+                    {{/if}} -->
+                  
+                        <!-- <div id="stamped-reviews-widget" class="grn-matt-stamp" style="display: inline-block;" data-widget-type="site-badge" data-badge-type="minimal" data-title="Verified Reviews" data-title-size="15" data-size-stars="12" data-element-id="2" data-lang="en">&nbsp;</div> -->
+                    <!-- <div id="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-title="Customer Reviews" data-style-color-title="#2f2f2b" data-style-color-text="#2f2f2b" data-style-color-link="#2f2f2b" data-fill-empty="true" data-random="? string:Customer Reviews ?" data-product-image="true"></div>                      -->
+                    <div class="productView-description green-matt-desc ul mt-2" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}} style="margin-bottom: 0 !important">
+                        {{{product.description}}}
+                        {{{snippet 'product_description'}}}
+                    </div>
+                     <div class="d-flex align-items-center grn-matt-price  w-100">
+                                            <h4 class="productView-price">Total Price: &nbsp </h4>
+                                            {{#if product.call_for_price}}
+                                            <p class="productView-price">
+                                                <span style="font-size: 28px; font-weight: 800;">{{product.call_for_price}}</span>
+                                            </p>
+                                            {{/if}}
+                                            <div class="productView-price"  style="font-size: 28px; font-weight: 800;">
+                                                {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                                    {{> components/products/price price=product.price schema_org=schema}}
+                                                {{else}}
+                                                    {{> components/common/login-for-pricing}}
+                                                {{/or}}
+                                            </div>
+                                            <!--u-hiddenVisually-->
+                                        <div class="form-field form-field--stock">
+                                            <label class="form-label form-label--alternate">
+                                                <!--{{lang 'products.current_stock'}}-->
+                                                <span style="display: none !important;"  data-product-stock >{{product.stock_level}}</span>
+                                            </label>
+                                        </div>
+                                       </div>
+                    <!-- <div id="stamped-reviews-widget" style="display: inline-block;" data-widget-type="site-badge" data-badge-type="minimal" data-title="Verified Reviews" data-title-size="15" data-size-stars="12" data-element-id="2" data-lang="en">&nbsp;</div> -->
+                
+                </div>
+                
+               
+
+    
+                <!--{{{region name="product_below_price"}}}
+    
+                {{product.detail_messages}}-->
+            </div>
+            <div class="productView-options grn-matt-opt {{#if settings.show_wishlist}}has-wishlist{{/if}}">
+                <div class="grn-matt-opt-div">
+                {{#if product.release_date }}
+                    <p>{{product.release_date}}</p>
+                {{/if}}
+
+                <form class="form grn-matt-form {{#if theme_settings.enable_circular_swatches}}swatches--round{{/if}}" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                      data-cart-item-add>
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{product.id}}"/>
+
+                    <div class="cus-options" data-product-option-change style="display:none;">
+                        {{#each product.options}}
+                            {{{dynamicComponent 'components/products/options'}}}
+                        {{/each}}
+                    </div>
+                    <div class="form-qty-cart">
+                    {{#if product.event_date}}
+                        {{> components/products/event-date}}
+                    {{/if}}
+                    
+                    {{#if product.can_purchase}}
+                        {{> components/products/add-to-cart}}
+                    {{/if}}
+                    
+                      {{#if product.out_of_stock}}
+                        {{#if product.out_of_stock_message}}
+                            {{> components/common/alert/alert-error product.out_of_stock_message}}
+                        {{else}}
+                            {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+                        {{/if}}
+                    {{/if}}
+                    </div>
+                </form>
+    
+                {{#if settings.show_wishlist}}
+                    {{> components/common/wishlist-dropdown}}
+                {{/if}}
+                {{#if product.availability}}<div class="productView-availability"><i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-delivery-van" /></svg></i> {{product.availability}}</div>{{/if}}
+    
+                {{#or product.min_purchase_quantity product.max_purchase_quantity product.gift_wrapping_available product.shipping}}
+                    <dl class="productView-info">
+                        {{#if product.min_purchase_quantity}}
+                            <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</dd>
+                        {{/if}}
+                        {{#if product.max_purchase_quantity}}
+                            <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</dd>
+                        {{/if}}
+                        {{#if product.gift_wrapping_available}}
+                            <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                        {{/if}}
+                        {{#if product.shipping}}
+                            {{#if product.shipping.calculated}}
+                                <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
+                            {{else}}
+                                {{#if product.shipping.price.value '===' 0}}
+                                    <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                    <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
+                                {{else}}
+                                    <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                    <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                    </dl>
+                {{/or}}
+
+                <div class="shipsdelivery-container mt-0">
+                    <div><p>Ships by: <span class="blue">{{moment "now" "MM/DD/YYYY"}}</span></p></div>
+                    <div class="vertical"></div>
+                    <div><p>Delivery: <span>Within 2-7 Days</span></p></div>
+                </div>
+                <p class="learn-shipment">*To learn more about shipping, check out our <a href="/shipping-transit-chart/" style="color:#707070;" target="_blank"> Shipment Transit Chart.</a></p>
+          
+                <div class="complete-set-tab d-none" style="display: none">
+                    <h5>Complete the Set</h5>
+                    <div class="tabs-section">
+                      <h4 class="row nav-tab-wrapper mw-100">
+                          <a href="#tab-1" class="col col-xs-6 col-md-3 nav-tab nav-tab-active">Pillows</a>
+                          <a href="#tab-2" class="col col-xs-6 col-md-3 nav-tab">Protectors</a>
+                          <a href="#tab-3" class="col col-xs-6 col-md-3 nav-tab">Sheets</a>
+                      </h4>
+                    </div>
+                    <section id="tab-1" class="tab-content active">
+                      <div class="rowtab-content">
+                            <div class="first"> <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/1280x1280/products/384/3231/WKQQ02SD-Stacked-wb1548286649_original__51093.1630638982.jpg?c=1" alt=""> </div>
+                            <div class="sec">
+                                <h4><a href="#">Malouf Weeknder Shredded Memory Foam Pillow (2 PACK)</a></h4>
+                                <!-- <a href="/cart.php?action=add&sku=WKQQ02SD&source=buy_button" id="cart-click-item"><i class="fas fa-plus" id="add"></i></a>  -->
+                                <a href="#"><i class="fas fa-plus" id="add"></i></a>
+
+                                <span class="price">$12.99</span>
+                            </div>
+                      </div>
+                    </section>
+                    <section id="tab-2" class="tab-content">
+                        <div class="rowtab-content">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt eveniet debitis quis placeat nostrum recusandae laudantium ea eos, aperiam vel dicta. Molestias deserunt facere nesciunt voluptas assumenda, harum explicabo dolorem vitae enim quam eos officia ducimus exercitationem sit laboriosam dolor recusandae quibusdam a, nulla adipisci blanditiis placeat illo! Eaque tempora ipsam doloremque quam autem natus numquam ea exercitationem nemo voluptatem eum distinctio totam corrupti, saepe quisquam nostrum nesciunt fuga modi rem optio eius aliquid quibusdam porro quas! Animi suscipit at cumque perferendis earum perspiciatis dolores ratione minima qui eius veritatis autem odit ducimus eaque obcaecati dolorum, vel maiores? Facere, dicta.
+                        </div>
+                    </section>
+                    <section id="tab-3" class="tab-content">
+                          <div class="row text-content">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi asperiores ducimus at nulla itaque voluptatibus voluptatum impedit nihil dolore magnam consequatur perspiciatis quasi modi autem distinctio beatae maxime, quia possimus cum veniam ipsum dolores corporis nostrum. Corrupti, fugiat maiores atque voluptatibus assumenda nesciunt, tempore ullam velit iure voluptatum cupiditate dicta itaque veniam ex accusantium accusamus voluptas doloribus sit temporibus dolore sunt tenetur quisquam numquam. Officia deleniti consectetur repellat nihil itaque labore sequi ipsam incidunt laudantium eos non, velit, expedita, necessitatibus est ipsa provident. Laboriosam voluptates ipsam magnam! Tempore culpa accusamus, hic ratione delectus quod explicabo, eos dolorum, vel possimus fugiat?
+                          </div>
+                      </section>
+                </div>
+                
+
+                <div class="faqs-desc specs-desc">
+                    <div class="other-detail" >
+                    <div class="specification--container">
+                        <input id="_0" type="checkbox">
+                        <label class="terms-showMore specs-label" for="_0" id="Product_spec">
+                            <p>Product Specifications </p><img class="lazyload mr-2 icon" data-sizes="auto" src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/svgs/circle-plus-solid.svg'}}" width="25" height="25" alt="Plus">
+                        </label>
+                            <div style="padding: 0;">
+                                <div class="data-table Product_spec" id="product-attribute-specs-table"> 
+                                    <table class="specs-table-prod other-detail" style="width:100%">
+                                    <div class="productView-info"> 
+                                        {{#each product.custom_fields}}
+                                            {{#all (if name '!==' 'Warranty Info')}}
+                                                <tr id="tr-data" class="Product_spec--table">
+                                                    <div>
+                                                        <td class="productView-info-name p-0 py-2">{{name}}:</td>
+                                                        <td class="productView-info-value p-0">{{{value}}}</td>
+                                                    </div>
+                                                </tr>
+                                            {{/all}}
+                                        {{/each}}
+                                    </div>
+                                </table>
+                                </div>
+                            </div>
+                    </div>    
+
+                    <!-- MEASUREMENTS -->
+                    <div class="other-detail" id="prod--measurement">
+                        <input id="_11" type="checkbox">
+                        <label class="terms-showMore specs-label measurements" for="_11" id="prod--measurement">
+                            <p>Measurements </p><img class="lazyload mr-2 icon" data-sizes="auto" src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/svgs/circle-plus-solid.svg'}}" width="25" height="25" alt="Plus">
+                        </label>
+                        <div style="padding: 0;">
+                            <div class="data-table" id="product-attribute-specs-table"> 
+                                <table class="specs-table-prod other-detail" style="width:100%">
+                                <div class="productView-info" id="measurement-check"> 
+                                    {{#if product.title "==" "Coolest Gel Memory Foam Mattress"}}
+                                        <tr id="tr-data measurements" class="measurementData">
+                                            <div>
+                                                <td class="productView-info-name p-0 py-2">Full</td>
+                                                <td class="productView-info-value p-0 size">54" x 75"</td>
+                                            </div>
+                                        </tr>
+                                        <tr id="tr-data measurements" class="measurementData">
+                                            <div>
+                                                <td class="productView-info-name p-0 py-2">King</td>
+                                                <td class="productView-info-value p-0 size">76" x 80"</td>
+                                            </div>
+                                        </tr>
+                                        <tr id="tr-data measurements" class="measurementData">
+                                            <div>
+                                                <td class="productView-info-name p-0 py-2">Queen</td>
+                                                <td class="productView-info-value p-0 size">60" x 80"</td>
+                                            </div>
+                                        </tr>
+                                        <tr id="tr-data measurements" class="measurementData">
+                                            <div>
+                                                <td class="productView-info-name p-0 py-2">Twin</td>
+                                                <td class="productView-info-value p-0 size">39" x 75"</td>
+                                            </div>
+                                        </tr>
+                                    {{/if}}
+
+                                    {{#all (if product.title "!==" "Coolest Gel Memory Foam Mattress") }}
+                                        <tr id="tr-data measurements" class="measurementData">
+                                            <div>
+                                                <td class="productView-info-name p-0 py-2">Size</td>
+                                                <td class="productView-info-value p-0 test-data"></td>
+
+                                            </div>
+                                        </tr>
+                                    {{/all}}
+
+                                        <tr id="tr-data measurements" class="measurementData thickness">
+                                            <div>
+                                                <td class="productView-info-name p-0 py-2">Thickness</td>
+                                                <td class="productView-info-value p-0 data-thick"></td>
+                                            </div>
+                                        </tr>
+                                </div>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- WARRANTY INFO -->
+                    <div class="other-detail" id="product--warranty">
+                        <input id="_12" type="checkbox">
+                        <label class="terms-showMore specs-label measurements" for="_12" id="product--warranty">
+                            <p>Warranty Info</p><img class="lazyload mr-2 icon" data-sizes="auto" src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/svgs/circle-plus-solid.svg'}}" width="25" height="25" alt="Plus">
+                        </label>
+                        <div style="padding: 0;">
+                            <div class="data-table warranty" id="product-attribute-specs-table"> 
+                                <table class="specs-table-prod other-detail" style="width:100%">
+                                <div class="productView-info"> 
+                                    {{#each product.custom_fields}}
+                                        {{#if name "==" "Warranty Info"}}
+                                            <tr id="tr-data warranty" class="table-warranty">
+                                                <div>
+                                                    <!-- <td class="productView-info-name p-0 py-2">{{name}}:</td> -->
+                                                    <td class="productView-info-value p-0 px-2">{{{value}}}</td>
+                                                </div>
+                                            </tr>
+                                        {{/if}}
+                                 
+                                    {{/each}}
+                                </div>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="special-feature" >
+                        <input id="_4" type="checkbox">
+                        <label class="terms-showMore specs-label mt-2" for="_4" id="special--feature">
+                            <p style="color: #173456; ">SPECIAL FEATURES </p> <img class="lazyload mr-2 icon" data-sizes="auto" src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/svgs/circle-plus-solid.svg'}}" width="25" height="25" alt="Plus">
+                            <img class="fas fa-times" id="close" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/minus-square-outlined-button-1-.png?t=1626224949'}}" />
+                        </label>
+                        <div class="show-features">
+                            <div class="productView-description green-matt-desc" {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+                                {{{product.description}}}
+                                {{{snippet 'product_description'}}}
+                             </div>                        
+                        </div>
+                    </div>
+                </div>
+
+                 
+            {{#if theme_settings.show_product_description_below}}
+                <div class="productView-scrollToDescription" id="description">
+                    <a href="#description{{#if is_ajax}}_{{product.id}}{{/if}}">{{lang 'products.product_details'}} <span class="icon"><svg><use xlink:href="#icon-arrow-down"></use></svg></span></a>
+                </div>
+              {{/if}}
+            </div>
+            <div class="shipping--section">
+                        <div class="flex-section">
+                            <div class="col-section">
+                                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/free-shipping-icon-pro.png" alt="">
+                            </div>
+                            <div class="col-section">
+                                <h5>Free Shipping & Returns</h5>
+                                <p>Receive your new mattress right at your doorstep with our free shipping anywhere in the continental US. Return policies apply.</p>
+                            </div>
+                        </div>
+                        <div class="d-none">
+                        <div class="flex-section">
+                            <div class="col-section">
+                                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/quick-easy-icon.png" alt="">
+                            </div>
+                            <div class="col-section">
+                                <h5>Quick & Easy Setup</h5>
+                                <p>The mattress can be used within a few minutes upon opening the package. Setup is just a few easy steps.</p>
+                            </div>
+                        </div>
+                        <div class="flex-section">
+                            <div class="col-section">
+                                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/year-warranty-prod.png" alt="">
+                            </div>
+                            <div class="col-section">
+                                <h5>Forever Warranty</h5>
+                                <p>Icon Sleep's 10-Year Forever Warranty gives you specfic legal rights, and you may have other rights that may vary from state to state.</p>
+                            </div>
+                        </div>
+                        <div class="flex-section">
+                            <div class="col-section">
+                                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/100night.png?t=1650876746&_gl=1*nzuuz1*_ga*ODk3ODY0MTgwLjE2NDg4MDI1OTE.*_ga_WS2VZYPC6G*MTY1MDg3NTIzNC4zMy4xLjE2NTA4NzY3NzkuMTY." alt="">
+                            </div>
+                            <div class="col-section">
+                                <h5>100 Night Risk-Free Trial</h5>
+                                <p>If after the 100-night sleep trial you're not satisfied with our mattress, you can return it to us and we will refund you the full amount you paid. </p>
+                            </div>
+                        </div>
+                        </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="green-matt-features hybrid">
+        <img src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/new-prodpage/certipur-banner.png'}}" class="d-none" alt="CeriPUR-US"/>
+        <div class="hybrid-absolute-con">
+            <div class="grn-ftr-text hybrid mw-100">
+                <div class="hybrid-flex">
+                    <div>
+                        <h4 class="font-weight-bold text-capitalize text-left" style="color: #132448;">Nothing feels better than the weekend</h4>
+                        <p class="mb-4 text-left">The Weekender Hybrid is more than just a mattress – it’s an experience As always with Icon Sleep, this product is <b>CertiPUR-US® and STANDARD 100 OEKO-TEX® certified.</b> </p> 
+                    </div>
+                    <div>
+                        <img class="lazyload" src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/new-prodpage/Certipur_logo-g.png'}}" alt="CeriPUR-US Logo"/>   
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div id="related-prod">
+
+    </div>
+
+    <!-- End of Related Products -->
+
+    <div class="faetures--section-bg bg-white">
+        <h2 class="h2 text-center py-5 mt-0">Product Features</h2>
+        <div class="faetures--section">
+            <div>
+                <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/mask-group-11-2x.png'}}" alt="features-img">
+            </div>
+    
+            <div class="text-section m-auto">
+
+                <div class="d-flex">
+                    <div class="mr-4">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/motion-2.png'}}" alt="zero transfer">
+                    </div>
+                    <div>
+                        <h2 class="mt-0">Zero Motion Transfer</h2>
+                        <p class="mt-0 mb-0">Cushioning, quilted memory foam conforms to the body’s natural shape and helps reduce motion transfer for better and longer sleeps.</p>
+                    </div>                  
+                </div>
+                <div class="d-flex mt-4">
+                    <div class="mr-4">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/pressure-2.png'}}" alt="power pressure"></div>
+                    <div>
+                    <h2 class="mt-0">Powerful Pressure Relief</h2>
+                    <p class="mt-0 mb-0">Layered, soft comfort foams help relieve pressure points and thick base layer encasement provides edge-to-edge support to the body.</p></div>
+                </div>
+                <div class="d-flex mt-4">
+                    <div class="mr-4">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/coil.png'}}" alt="coil archi"></div>
+                    <div>
+                    <h2 class="mt-0">Traditional Coil Architecture</h2>
+                    <p class="mt-0 mb-0">Heavy-duty tempered coils create a strong mattress core, ensuring that all memory foam layers are intact and not compromised.</p></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="faetures--section-bg pt-5">
+
+        <div class="faetures--section pt-4 flex-row-reverse">
+            <div class="w-50">
+                <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/weeknd-er-right-img.png'}}" alt="features-img" class="w-100">
+            </div>
+            <div class="text-section m-auto" style="height: 350px;">
+                <h2 class="font-weight-normal my-0">Up-close with the Icon:</h2>
+                <h2 class="h2 text-left mt-0 mb-4"> A Weekend-er that doesn’t fall short.</h2>
+    
+                <div class="d-flex align-items-center">
+                    <span id="number-circle"></span>
+                    <p class="mt-0 mb-0">Quilted memory foam conforms to the body and helps reduce motion transfer</p>
+                </div>
+                <div class="d-flex align-items-center mt-3">
+                    <span id="number-circle"></span>
+                    <p class="mt-0 mb-0">Made using CertiPUR-US® certified foams and Oeko-TEX® certified textiles</p>
+                </div>
+                <div class="d-flex align-items-center mt-3">
+                    <span id="number-circle"></span>
+                    <p class="mt-0 mb-0">Layered, soft comfort foams help relieve pressure points</p>
+                </div>
+                <div class="d-flex align-items-center mt-3">
+                    <span id="number-circle"></span>
+                    <p class="mt-0 mb-0">Thick foam encasement provides edge-to-edge support</p>
+                </div>
+                <div class="d-flex align-items-center mt-3">
+                    <span id="number-circle"></span>
+                    <p class="mt-0 mb-0">Heavy-duty tempered coils create a strong core</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dream-bg">
+        <div class="dreams-section flex-row-reverse">
+
+            <div class="text-section m-auto ml-5 pl-4">
+                <ul id="case-list">
+                    <li class="case active">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/sleep-icon.png'}}" alt="">
+                    </li>
+                    <li class="case">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/top-notch-icon.png'}}" alt="">
+                    </li>
+                    <li class="case">
+                        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/long-last-mattress-icon.png'}}" alt="">
+                    </li>
+                  </ul>
+    
+                <div id="case-list" class="w-100">
+                    <div class="case toDisplay active w-100">
+                        <h2 class="mt-5 mb-4 text-light text-uppercase">SLEEP WITHOUT INTERRUPTIONS</h2>
+                        <p class="text-light">Eliminate your sleeping problems with the Weekender Hybrid’s Zero Motion Transfer technology that allows you to sleep longer without annoying breaks.</p>
+                    </div>
+                    <div class="case toDisplay w-100">
+                        <h2 class="mt-5 mb-4 text-light text-uppercase">TOP-NOTCH COMFORT ALL NIGHT LONG</h2>
+                        <p class="text-light">Experience pressure relief from body aches and pains with the Weekender Hybrid’s multi-layer architecture that provides excellent spinal support and extra comfort all night long.</p>
+                    </div>
+                    <div class="case toDisplay w-100">
+                        <h2 class="mt-5 mb-4 text-light text-uppercase">LONG-LASTING MATTRESS</h2>
+                        <p class="text-light">The Weekender Hybrid is designed to last for years thanks to its extremely durable memory foam layers and coils that help prevent mattress sagging in the long run.</p>
+                    </div>
+                </div>
+                <button id="prev" class="bg-transparent pl-0 pr-2"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="next" class="bg-transparent px-2"><i class="fa-solid fa-chevron-right"></i></button>
+    
+    
+            </div>
+            <div class="img-section">
+                <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/left-hybrid-img.png'}}" alt="" class="w-100 lazyload">
+            </div>
+        </div>
+    </div>
+    
+    <div id="newreview-section" class="py-4"></div>
+    <div class="w-75 mx-auto text-center mt-0" style="margin-top: 3rem !important;">
+            <h2>Everybody loves the Weekend-er</h2>
+            <p>Share with us your Hybrid experience!  </p>
+    </div>
+    
+    <div class="product-review-section greenh2" style="">
+
+      <div class="review-stamped mx-auto mb-0" style="width: 85%;">    
+      <div class="review-counter">
+        <div id="stamped-main-widget" data-widget-style="standard" data-product-id="{{product.id}}" data-title="Customer Reviews" data-style-color-title="#2f2f2b" data-style-color-text="#2f2f2b" data-style-color-link="#2f2f2b" data-fill-empty="true" data-random="? string:Customer Reviews ?" data-product-image="true"></div>
+              </div>
+        </div>
+      </div>    
+  </div>
+  
+  <div class="have-questionsec">
+    <h2>Have questions?</h2>
+    <p class="quotes">Here are some frequently asked questions.</p>
+
+    <div class="question-grid">
+        <div class="grid-con">
+            <div class="title-flex">
+                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/question-mark-icon.png?t=1647925466&_gl=1*8pzu4b*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyNTA4Mi41MS4xLjE2NDc5MjU0NTUuNTU." alt="">
+                <h4>Can you flip a hybrid mattress?</h4>
+            </div>
+            <p>No, the typical hybrid mattress has a top-down design, meaning you’re supposed to lay on one side of the bed, while the other is made to rest on a bed base. Flipping a top-down mattress like the Weekender Hybrid can wear the bed down drastically, and is just plain uncomfortable to lay on. <br/><br/><a href="https://icon-sleep.com/faqs/" class="pl-0 font-weight-bold">Read More</a></p>
+            
+        </div>
+        <div class="grid-con">
+            <div class="title-flex">
+                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/question-mark-icon.png?t=1647925466&_gl=1*8pzu4b*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyNTA4Mi41MS4xLjE2NDc5MjU0NTUuNTU." alt="">
+                <h4>Do hybrid mattresses need a box spring?</h4>
+            </div>
+            <p>No, the Weekender Hybrid doesn’t require a box spring. In fact, box springs may harm hybrid mattresses because they are not a suitable foundation for top-down beds. REMEMBER: pairing most hybrid mattresses with a box spring may void their warranties. <br/><br/><a href="https://icon-sleep.com/faqs/" class="pl-0 font-weight-bold">Read More</a></p>
+           
+        </div>
+        <div class="grid-con">
+            <div class="title-flex">
+                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/question-mark-icon.png?t=1647925466&_gl=1*8pzu4b*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyNTA4Mi41MS4xLjE2NDc5MjU0NTUuNTU." alt="">
+                <h4>Do hybrid mattresses sag?</h4>
+            </div>
+            <p>The Weekender Hybrid is made with heavy-duty tempered coils that create a strong core and a second line of defense against sagging.<br/><br/><a href="https://icon-sleep.com/faqs/" class="pl-0 font-weight-bold">Read More</a></p>
+            
+        </div>
+        <div class="grid-con">
+            <div class="title-flex">
+                <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/question-mark-icon.png?t=1647925466&_gl=1*8pzu4b*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyNTA4Mi41MS4xLjE2NDc5MjU0NTUuNTU." alt="">
+                <h4>Have other questions?</h4>
+            </div>
+            <p>Feel free to contact us via<br>
+                <span class="d-none">Toll-free number: <b>+123 456 7890</b><br></span>
+                Email us at: <b>support@icon-sleep.com</b><br>
+                Or fill in the contact form below.<br><br>
+                Service Hours:<br>
+                <b>Mon-Fri: 8am-5pm</b></p>
+        </div>
+    </div>
+</div>
+
+<div class="get-in-bg" style="display: none">
+    <div class="get-intouch">
+        <div>
+            <h2>Get in Touch</h2>
+            <p>We keep our lines open to customers who need assistance. Feel free to reach us by using this inquiry form or by visiting our Support Center.</p>
+        </div>
+        <div>
+            <div class="new-jotforms">
+                <script type="text/javascript" src="https://form.jotform.com/jsform/220881192930052"></script>
+            </div>
+    
+        </div>
+    </div>
+</div>
+    <div class="cta-istruth">
+        <div class="w-75 mx-auto py-5">
+            <h2 style="color: #fff; text-align: center; font-weight: 700; text-transform: inherit; margin-top: 0;" class="slide-in left-long delay-1000 in-view appear">Get In Touch</h2>
+            <p style="color: #fff; text-align: center; font-size: 18px; margin-bottom: 1.5em;" class="slide-in left-long delay-1000 in-view appear">We keep our lines open to customers who need assistance.<br/> Feel free to reach us by using this inquiry form or by visiting our Support Center.</p>
+            <a href="/get-in-touch/" class="is-truth fade-in from-bounce-in duration-5000 in-view appear" style="color: #fff; text-align: center; display: inline-block;padding: 14px 25px;" target="_blank">Get In Touch</a>   
+        </div>    
+    </div>
+        
+
+    
+<script>
+    $(document).ready(function(){
+        $("#rev-link").click(function() {
+            document.getElementById("newreview-section").scrollIntoView({behavior: 'smooth'});
+        });
+
+
+    });
+</script>
+
+
+<style>
+.cta-istruth {
+        background: #11298a;
+        margin-bottom: 0;
+        height: auto;
+        padding: 0 0;
+        position: relative;
+        margin-top: 0;
+}
+.product-body .specs-desc label.terms-showMore.specs-label .icon {
+    width: 25px !important;
+    height: auto !important;
+}
+.faetures--section.pt-4.flex-row-reverse {
+    width: 95%;
+    margin: 0 0 0 auto;
+}
+.product-body .green-matt-features.hybrid {
+    height: 450px;
+    background: url("https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/parallax-image-hybrid.png") !important;
+    background-size: cover;
+    background-size: cover!important;
+    background-repeat: no-repeat!important;
+    width: 100%;
+    margin: -2rem auto 0;
+    color: #fff;
+    position: relative;
+    background-attachment: fixed!important;
+    padding: 7rem 2rem;
+    text-align: center;
+}
+
+.productView-options .form {
+    display: inline;
+    margin: 0 0em 1.5rem;
+}
+
+.product-body .productView-description.green-matt-desc ul li {
+    color: #333;
+}
+
+@media screen and (max-width: 800px) {
+    .product-body .dreams-section.flex-row-reverse {
+        flex-direction: column-reverse !important;
+        row-gap: 3.5rem;
+    }
+    .faetures--section.pt-4.flex-row-reverse {
+        flex-direction: column !important;
+    }
+    .faetures--section.pt-4.flex-row-reverse div.w-50{
+        width: 100% !important;
+    }
+    .product-body .dreams-section .text-section {
+        width: 90%;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+}
+
+
+</style>

@@ -1,0 +1,26 @@
+{
+  "customLayouts": {
+    "brand": {},
+    "category": {
+      "mattresses.html":"/mattresses/",
+      "toppers.html":"/toppers/",
+      "bases.html":"/bases/",
+      "bedding.html":"/bedding/"
+    },
+    "page": {
+      "affirm--template.html":"/affirm/",
+      "custom-about-us.html":"/about-us/",
+      "custom-faqs.html":"/faqs/",
+      "custom-fake-reviews.html":"/fake-reviews/",
+      "custom-support.html":"/support/",
+      "custom-is-reviews.html":"/reviews/",
+      "custom-track-order.html":"/track-order/",
+      "custom-night-sleep-trial.html":"/sleep-trial/",
+      "icon-sleep-story.html":"/icon-sleep-story/"
+    },
+    "product": {}
+  },
+  "apiHost": "https://api.bigcommerce.com",
+  "normalStoreUrl": "https://icon-sleep.com",
+  "port": 3003
+}

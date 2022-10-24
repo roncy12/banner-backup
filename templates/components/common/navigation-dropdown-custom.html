@@ -1,0 +1,63 @@
+<div class="navPage-subMenu navPage-subMenu-horizontal custom-dropdown mt-3 border-top-0 justify-content-between p-0" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
+    <ul class="navPage-subMenu-list slide-navv _nav-open-flag">
+        <li class="navPage-subMenu-item-parent d-none">
+            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max d-none" href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
+            
+        </li>
+          {{#each children}}
+            <li class="navPage-subMenu-item-child border-bottom-0">
+                <!-- <p class="json"> {{json name}}</p> -->
+                {{#if children}}
+                    <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">
+                        {{name}}<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+                    </a>
+                   
+                    {{> components/common/navigation-dropdown}}
+
+                {{else}}
+
+                {{#if (lowercase (dashcase name)) '===' "weekender-600-thread-count-cotton-blend-sheet-set" }}                 
+                    <a class="navPage-subMenu-action  w-48 p-0 navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">600 TC Cotton-Blend Sheet Set
+                        <img class="lazyload mt-2 mb-2" src="{{cdn (concat 'https://store-z2qdisybty.mybigcommerce.com/content/nav/' (concat  (lowercase (dashcase name)) '.png'))}}"  alt="still in doubt image banner" loading="lazy" decoding="async" >
+                    </a>
+                    <p class="mt-0 nav-price">Starts at <b>$32.00</b></p>
+               
+                {{else}}
+                      <a class="navPage-subMenu-action  w-48 p-0 navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}
+                       <img class="lazyload mt-2 mb-2" src="{{cdn (concat 'https://store-z2qdisybty.mybigcommerce.com/content/nav/' (concat  (lowercase (dashcase name)) '.png'))}}"  alt="still in doubt image banner" loading="lazy" decoding="async">
+                     </a>
+
+                    {{#if (lowercase (dashcase name)) '===' "weekender-sherpa-blanket" }}  
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$13.00</b></p>    
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "anchor-weighted-blanket" }}      
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$54.00</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "zoned-activedough-cooling-gel" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$40.00</b></p>                  
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "gelled-microfiber" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$70.00</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "pr1me-smooth-mattress-protector" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$23.00</b></p> 
+                    {{/if}} 
+                    {{#if (lowercase (dashcase name)) '===' "five-5ided-smooth-mattress-protector" }}                  
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$30.00</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "italian-artisan-sheet-set" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$82.00</b></p>   
+                    {{/if}}
+
+                {{/if}}
+
+                {{/if}}
+                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max d-none" href="{{url}}">Browse All</a>
+            </li>
+
+        {{/each}}
+    </ul>
+</div>
+
+
+

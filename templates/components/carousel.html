@@ -1,0 +1,72 @@
+<section class="heroCarousel mb-2 mt-4"
+    data-slick='{
+        "arrows": {{arrows}},
+        "mobileFirst": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "autoplay": true,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "slide": "[data-hero-slide]",
+        "adaptiveHeight": true
+    }'
+>
+    {{#each carousel.slides}}
+    {{#if button_text}}
+    <div data-hero-slide="{{@index}}">
+    {{else}}
+       <a {{#if @last}} href="#" {{else}} href="{{url}}" {{/if}} data-hero-slide="{{@index}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}">
+
+    {{/if}}
+        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+            {{#if button_text}}
+            <a href="{{url}}" class="heroCarousel-image-wrapper">
+            {{else}}
+            <div class="heroCarousel-image-wrapper">
+            {{/if}}
+            <!--<img data-src="{{cdn '../img/New_Homepage_banner.webp'}}" alt="Homepage Banner" class="lazyload" width="1349" height="577" fetchpriority="high" />-->
+            {{> components/common/responsive-img
+                    image=stencil_image
+                    class="heroCarousel-image"
+                    fallback_size='1280w'
+                    lazyload='lazyload'
+                }}
+            {{#if button_text}}
+            </a>
+            {{else}}
+
+            {{#if @last}}
+          
+                <div id="rightabsolute-0">
+                   <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/original/image-manager/10-kings-coolest-gel.png">
+                </div>
+            
+                <div id="rightabsolute-1">
+                    <img src="https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/original/image-manager/12-kings-coolest-gel.png">
+                </div>
+            {{/if}}
+            </div>
+            {{/if}}
+    
+
+
+
+            {{#or heading text button_text}}
+                {{> components/carousel-content}}
+            {{/or}}
+
+
+        </div>
+    {{#if button_text}}
+    </div>
+    {{else}}
+    </a>
+    {{/if}}
+    {{/each}}
+    {{#if carousel.slides.length '>' 1}}
+        {{> components/carousel-content-announcement}}
+        {{#if play_pause_button}}
+            {{> components/carousel-play-pause-button}}
+        {{/if}}
+    {{/if}}
+</section>
+

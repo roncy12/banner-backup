@@ -1,0 +1,103 @@
+
+
+{{#if children}}
+<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+   href="{{url}}" style="white-space:nowrap;">
+    {{name}}
+    <i class="fa fa-chevron-down icon navPages-action-moreIcon" aria-hidden="true" style="transition: unset;">
+    </i>
+</a>
+
+<div class="navPage-subMenu _nav-open-flag" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
+
+    {{#if (lowercase (dashcase name)) '===' "bedding" }}    
+      {{> components/common/bedding-nav}}
+    {{/if}}
+    <ul class="navPage-subMenu-list gg">
+
+        {{#inArray (split "bases,toppers" ",") (lowercase (dashcase name))}}    
+        {{#each children}}
+            <li class="navPage-subMenu-item">
+                {{#if children}}
+                    <a class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}} mb-0"
+                       href="{{url}}"
+                       aria-label="{{name}}"
+                    >
+                   
+                        <span id="font">{{name}}</span>
+                        <span class="collapsible-icon-wrapper"
+                            data-collapsible="navPages-{{id}}"
+                            data-collapsible-disabled-breakpoint="medium"
+                            data-collapsible-disabled-state="open"
+                            data-collapsible-enabled-state="closed"
+                        >
+                            <i class="fa fa-chevron-down icon navPages-action-moreIcon" aria-hidden="true">
+                            </i>
+                        </span>
+                    </a>
+                    <ul class="navPage-childList" id="navPages-{{id}}">
+                        {{#each children}}
+                        <li class="navPage-childList-item">
+                            <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}"
+                               href="{{url}}"
+                               aria-label="{{name}}"
+                            >
+                                {{name}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                {{else}}
+
+                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}} mb-0"
+                       href="{{url}}"
+                       aria-label="{{name}}"
+                    >
+
+                    {{#contains name "Topper"}}
+                        <span id="font toppers">{{name}}</span>
+                    {{else}}
+                        <span id="font">{{name}}</span>
+                    {{/contains}}
+                    
+                    <img class="mt-2 mb-2 lazyload" src="{{cdn (concat '../img/nav/' (concat  (lowercase (dashcase name)) '.webp'))}}"  alt="subcategory image">
+                      <!--BASES -->
+                      {{#if (lowercase (dashcase name)) '===' "adjustable-frames"}}
+                        <p class="mt-0 nav-price">Start at <b>$879.99</b></p>
+                      {{/if}}
+                      {{#if (lowercase (dashcase name)) '===' "platform-beds"}}
+                         <p class="mt-0 nav-price">Start at <b>$269.99</b></p>
+                     {{/if}}
+                     {{#if (lowercase (dashcase name))  '===' "metal-frames"}}
+                          <p class="mt-0 nav-price">Start at <b>$169.99</b></p>
+                     {{/if}}
+                     <!--TOPPERS -->
+                     {{#if (lowercase (dashcase name))  '===' "2-5-inch-gel-memory-foam-mattress-topper"}}
+                         <p class="mt-0 nav-price">Start at <b>$159.99</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name))  '===' "3-inch-down-alternative-mattress-topper"}}
+                      <p class="mt-0 nav-price">Start at <b>$129.99</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name))  '===' "carboncool-lt-omniphase-topper"}}
+                        <p class="mt-0 nav-price">Start at <b>$379.99</b></p>
+                    {{/if}}
+                     <!--BEDDING -->
+                    </a>
+                {{/if}}
+            </li>
+        {{/each}}
+        {{/inArray}}
+    </ul>
+</div>
+{{else}}
+<a class="navPages-action{{#if is_active}} activePage{{/if}}"
+   href="{{url}}"
+   aria-label="{{name}}"
+>
+
+<span>{{name}}</span>
+</a>
+{{/if}}
+
+
+

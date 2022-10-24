@@ -1,0 +1,453 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+<style>
+    .productView.grn-matt-page{
+        margin-top: 1.5rem !important;
+    }
+    
+
+    .productView-thumbnails {
+        visibility: hidden;
+    }
+    .productView-thumbnails.slick-initialized {
+        visibility: visible;
+    }
+    div#tidio-chat iframe {
+        /* margin-right: 138px !important; */
+    }
+</style>
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="http://schema.org/Product">
+ 
+        {{#contains product.title "Hybrid"}}
+            {{> aoc-custom/components/products/custom-hybrid-mattress schema=true settings=../settings schema=true}}
+        {{else}}     
+            {{> components/products/custom-green-mattress schema=true settings=../settings schema=true}}
+        {{/contains}}
+        <div style="display:none;" >
+
+
+            {{{region name="product_below_content"}}}
+    
+            {{#if product.videos.list.length}}
+                {{> components/products/videos product.videos}}
+            {{/if}}
+    
+            {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+                {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+            {{/all}}
+                  {{> components/products/tabs}}
+        </div>
+
+    </div>
+    
+
+{{/partial}}
+{{> layout/base}}
+<script>
+        function addEventListenerStamped(el, eventName, handler) { 
+        if (el.addEventListener) { el.addEventListener(eventName, handler); }
+        else { el.attachEvent('on' + eventName, function () { handler.call(el); }); } 
+        }
+
+        // Listening for event
+        addEventListenerStamped(document, '##replaceWithEventName##', function(e) {
+
+        });
+        // Example
+        // Listening for reviews widget loaded event
+        addEventListenerStamped(document, 'stamped:reviews:loaded', function(e) {
+            var count = $('#tab-reviews').attr('data-count');
+            var reviews = $('#label_reviews');
+            var str = '';
+            if(count < 1 ){
+                str  = '( No ratings yet )';	
+            }else{
+                str = '(' + count + ' reviews )';
+            }
+            reviews.text(str);
+        });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#rev-link").click(function() {
+            document.getElementById("newreview-section").scrollIntoView({behavior: 'smooth'});
+        });
+    });
+</script>
+<script>
+        $('#case-list .case').click(function(e) {
+        //Toggle tab link
+        $(this).addClass('active').siblings().removeClass('active');
+
+        //Toggle target tab
+        var indexClicked = $(this).index()+1;
+
+        $("#case-list .case.toDisplay").removeClass("active");
+        $("#case-list .case.toDisplay:nth-child("+indexClicked+")").addClass("active");
+
+            if($("#case-list .case.toDisplay.active:first-child").is(':visible') ){
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").addClass("opacity");
+            }else if($("#case-list .case.toDisplay.active:last-child").is(':visible') ){
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").addClass("opacity");
+            }else{
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").removeClass("opacity");
+            }
+        });
+
+        if($("#case-list .case.toDisplay.active:first-child").is(':visible') ){
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").addClass("opacity");
+        }
+</script>
+
+<script>
+    $(function() {
+    var nextBtn = $("#next"),
+        prevBtn = $("#prev");
+  
+    nextBtn.on('click', function(e) {
+
+        var active = $(".active");
+        var next = active.next('.case');
+        var nextC = active.next('.toDisplay');
+
+        if (next.length) {
+            active.removeClass('active');
+            next.addClass('active');
+            nextC.addClass('active');
+        }
+             if($("#case-list .case.toDisplay.active:first-child").is(':visible') ){
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").addClass("opacity");
+            }else if($("#case-list .case.toDisplay.active:last-child").is(':visible') ){
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").addClass("opacity");
+            }else{
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").removeClass("opacity");
+            }
+    });
+    prevBtn.on('click', function(e) {
+        var active = $(".active");
+        var prev = active.prev('.case');
+        var prevC = active.prev('.toDisplay');
+
+        if (prev.length) {
+            active.removeClass('active');
+            prev.addClass('active');
+            prevC.addClass('active');
+            console.log($(e).index());
+        }
+
+            if($("#case-list .case.toDisplay.active:first-child").is(':visible') ){
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").addClass("opacity");
+            }else if($("#case-list .case.toDisplay.active:last-child").is(':visible') ){
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").addClass("opacity");
+            }else{
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-left").removeClass("opacity");
+                $(".product-body .dreams-section.flex-row-reverse .fa-chevron-right").removeClass("opacity");
+            }
+    });
+});
+
+// var 
+// // $("span#number-circle("+indexClicked+")::before ").addClass("active");
+
+</script>
+
+<script>
+    $('.form-select[size]').change(function() {
+        //Use $option (with the "$") to see that the variable is a jQuery object
+        var $option = $(this).find('option:selected');
+        //Added with the EDIT
+        var value = $option.val();//to get content of "value" attrib
+        var text = $option.text();//to get <option>Text</option> content
+
+        console.log(text);
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $(".circle-list li").click(function(){
+            $(".circle-list li.activeCircle").removeClass("activeCircle");
+            $(this).addClass("activeCircle");
+            
+            if($(this).text() == 1){
+                $(".product-body .types-of-foams .text-section:not(.first)").addClass("d-none");
+                $(".product-body .types-of-foams .text-section:not(.first)").removeClass("d-block");
+                $(".product-body .types-of-foams .text-section.first").addClass("d-block");
+ 
+                $('.description-toggle').removeClass("active-toggle");
+                $('.inner-description').slideUp('slow');
+                $('#toggle-1').addClass("active-toggle");
+                $('#desc-1').slideDown('slow');
+                $(".circle-list li").removeAttr("id");
+                $(this).attr('id', 'lottie');
+                $(".z-index-no").remove();
+                $(this).append('<div class="z-index-no">'+$(this).text()+'</div>');
+            
+                // Updated
+            }else if($(this).text() == "2"){
+                $(".product-body .types-of-foams .text-section:not(.sec)").addClass("d-none");
+                $(".product-body .types-of-foams .text-section:not(.sec)").removeClass("d-block");
+                $(".product-body .types-of-foams .text-section.sec").addClass("d-block");
+               
+                $('.description-toggle').removeClass("active-toggle");
+                $('.inner-description').slideUp('slow');
+                $('#toggle-2').addClass("active-toggle");
+                $('#desc-2').slideDown('slow');
+                $(".circle-list li").removeAttr("id");
+                 $(this).attr('id', 'lottie');
+                 $(".z-index-no").remove();
+                $(this).append('<div class="z-index-no">'+$(this).text()+'</div>');
+                
+            }else if($(this).text() == "3"){
+                $(".product-body .types-of-foams .text-section:not(.third)").addClass("d-none");
+                $(".product-body .types-of-foams .text-section:not(.third)").removeClass("d-block");
+                $(".product-body .types-of-foams .text-section.third").addClass("d-block");
+            
+                $('.description-toggle').removeClass("active-toggle");
+                $('.inner-description').slideUp('slow');
+                $('#toggle-3').addClass("active-toggle");
+                $('#desc-3').slideDown('slow');
+                 $(".circle-list li").removeAttr("id");
+                 $(this).attr('id', 'lottie');
+                 $(".z-index-no").remove();
+                $(this).append('<div class="z-index-no">'+$(this).text()+'</div>');
+           
+            }else if($(this).text() == "4"){
+                $(".product-body .types-of-foams .text-section:not(.fourth)").addClass("d-none");
+                $(".product-body .types-of-foams .text-section:not(.fourth)").removeClass("d-block");
+                $(".product-body .types-of-foams .text-section.fourth").addClass("d-block");
+     
+                $('.description-toggle').removeClass("active-toggle");
+                $('.inner-description').slideUp('slow');
+                $('#toggle-4').addClass("active-toggle");
+                $('#desc-4').slideDown('slow');
+                 $(".circle-list li").removeAttr("id");
+                 $(this).attr('id', 'lottie');
+               $(".z-index-no").remove();
+                $(this).append('<div class="z-index-no">'+$(this).text()+'</div>');
+               
+            }else if($(this).text() == "5"){
+                $(".product-body .types-of-foams .text-section:not(.fifth)").addClass("d-none");
+                $(".product-body .types-of-foams .text-section:not(.fifth)").removeClass("d-block");
+                $(".product-body .types-of-foams .text-section.fifth").addClass("d-block");
+
+                $('.description-toggle').removeClass("active-toggle");
+                $('.inner-description').slideUp('slow');
+                $('#toggle-5').addClass("active-toggle");
+                $('#desc-5').slideDown('slow');
+                 $(".circle-list li").removeAttr("id");
+                 $(this).attr('id', 'lottie');
+                $(".z-index-no").remove();
+                $(this).append('<div class="z-index-no">'+$(this).text()+'</div>');
+               
+            }      
+            $(".activeCircle").attr('id', 'lottie');
+            $(".activeCircle").append($("ul.circle-list li svg"));
+        });
+        
+    });
+
+    $('.productView-img-container img').each(function() {
+        var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+        $(this).addClass(imgClass);
+    })
+
+
+</script>
+<script>
+    $(document).ready(function(){
+        $("#related-prod").append($(".relatedprod-content"));
+            
+        $("li.productView-thumbnail").hover(function(){
+            $("li.productView-thumbnail").removeClass("slick-active");
+            $(this).addClass("slick-active");
+        });
+        
+        $("#bases-categories .isEmpty, #toppers-categories .isEmpty, #bedding-categories .isEmpty").each(function(){
+            if($(this).children().length == 0){
+                $(this).remove();
+            }else{
+
+            }
+        });
+
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        // $("body").on('DOMSubtreeModified', function () {
+        $('.accordion-custom li').click(function(e) {
+            var indexActive = $(this).index()+1;    
+            $(".circle-list li").removeClass("activeCircle").removeAttr("id");
+            $('.circle-list li:nth-child('+indexActive+')').addClass("activeCircle").attr('id', 'lottie');
+            $("li#lottie").append($("ul.circle-list li svg"));
+
+
+        });
+    // });
+        $(".circle-list li.activeCircle:nth-child(2)").append('<div class="z-index-no">2</div>');
+    });
+
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    
+    $('.description-toggle').click(function(e) {
+    e.preventDefault();
+    let $this = $(this);
+    $('.description-toggle').removeClass('active-toggle');
+    $this.addClass("active-toggle").slideDown('slow');    
+    
+    setTimeout(function(){
+        $(".z-index-no").remove();
+        var indexNo = $(".circle-list li.activeCircle").index() + 1;
+        var htmlCell = jQuery('<div class="z-index-no">'+indexNo+'</div>');      
+        $("li.activeCircle").append($(htmlCell));
+
+    },100)
+
+        if ($this.next().hasClass('show')) {
+            $this.next().removeClass('show').slideUp('slow');
+        } else {
+            $this.parent().parent().find('li .inner-description').removeClass('show').slideUp('slow');
+            $this.next().toggleClass('show').slideDown('slow');
+        }
+        
+    
+
+});
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
+<script>
+    $(function () {
+        $(".productView-thumbnails").slick({
+            "infinite": false,
+            "mobileFirst": true,
+            "dots": false,
+            "accessibility": false,
+            "slidesToShow": 5,
+            "slidesToScroll": 5,
+            "vertical": true,
+            "verticalSwiping": true,
+            responsive: [
+                {
+                    breakpoint: 900,
+                    settings: {
+                        "infinite": false,
+                        "mobileFirst": true,
+                        "dots": false,
+                        "accessibility": false,
+                        "slidesToShow": 5,
+                        "slidesToScroll": 5,
+                        "vertical": true,
+                        "verticalSwiping": true,
+                    }
+                },
+                {
+                    breakpoint: 0,
+                    settings: {
+                        "slidesToShow": 4,
+                        "slidesToScroll": 4,
+                        "vertical": false,
+                        "verticalSwiping": false
+                    }
+                }
+            ]
+            
+        })
+    });
+</script>
+<style>
+    .productOptions-list-item {
+        padding: 0.7rem;
+        background: #E9EDF6;
+        align-items: center;
+    }
+    .productOptions-list-item-figure {
+        margin: 0 !important;
+        border-radius: 5px;
+        width: 100px;
+    }
+    .productOptions-list {
+        border: 1px solid #E9EDF6;
+        border-radius: 5px;
+    }
+    figure.productOptions-list-item-figure img {
+        width: 100px;
+        border-radius: 5px;
+    }
+    .productOptions-list-item-content {
+        padding-right: 1rem;
+        padding-left: 0;
+    }
+    .productOptions-list-item .form-label {
+        color: #132448;
+        font-size: 14px;
+    }
+    .cus-options[data-product-option-change] .form-field #product-list-label{
+        padding-left: 0.8rem;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $('.productOptions-list-item-content .form-radio').attr("class","form-checkbox");
+        $('.productOptions-list-item-content .form-checkbox').attr("type","checkbox");
+        $('.productOptions-list-item-content .form-checkbox').removeAttr('checked');
+        $('.productOptions-list-item label.form-label[for*="none"]').hide();
+
+        $('.cus-options[data-product-option-change] .form-field').each(function(){
+            var index = $(this).find('#product-list-label').html();
+            console.log(index)
+            $(this).find('#product-list-label').insertBefore($(this).find('.productOptions-list-item-content .form-checkbox'));
+        });
+
+    });
+</script>
+{{#or (if product.sku '==' 'GA-GELPRO-10K.')(if product.sku '==' 'GA-GELPRO-12K.')}}
+<script>
+    $(document).ready(function(){
+        $data = $('td.productView-info-value.Size.d-none').text(); 
+        $dataThickness = $('td.productView-info-value.Thickness.d-none').text(); 
+        $('.measurementData .for-new').text($data)
+        $('.measurementData .for-thickness').text($dataThickness);
+        
+
+    });
+</script>
+{{/or}}

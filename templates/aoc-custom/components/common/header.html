@@ -1,0 +1,443 @@
+<!--<a href="#main-content" class="skip-to-main-link">{{lang 'header.skip_to_main'}}</a>-->
+
+<div class="banners" data-banner-location="top">
+    <div class="banner" data-event-type="promotion">
+        <div data-event-type="promotion-click">
+           <!--<p><span>Presidents Day Sale 30% Off on All Cool Gel Mattresses! Code: ISP30</span></p>-->
+           <p><i class="fa fa-tag mr-2" aria-hidden="true"></i>
+            <span><a href="/usa-made-8-10-12-cooling-gel-memory-foam-mattress-twin-full-queen-king/?showHidden=true" class="text-uppercase mr-2" target="_blank" style="transition: unset;">10% OFF Amazon's Price</a> <br>on COOLest Gel Mattress! <strong> Code:</strong> <strong><span style="color: #4a72c6;font-weight: bolder;text-transform:none">COOLestGel10</span></strong></span></p>
+            
+        </div>
+    </div>
+</div>
+
+<header class="header header-bannerimg" id="myHeader" role="banner" style="margin-top: 0;padding-top: 0;">
+    <div class="header-div ">
+
+    <div>
+        <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+             <span class="mobileMenu-toggleIcon">Toggle menu</span>
+         </a> 
+    </div>
+    <div class="links-header logo-is">
+        {{#if page_type '===' 'default'}}
+        <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+            {{> components/common/store-logo}}
+        </div>
+        {{else}}
+            <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+                {{> components/common/store-logo}}
+            </div>
+        {{/if}}
+    </div>
+
+
+    <div class="links-header head-nav">
+         <div class="navPages-container" id="menu" data-menu>
+            {{> components/common/navigation-menu}}
+        </div>
+    </div>
+
+    <div class="links-header head-cart-icon">
+        <nav class="navUser">
+
+            <ul class="navUser-section navUser-section--alt">
+            <li class="navUser-item">
+                <button class="navUser-action navUser-action--quickSearch"
+                type="button"
+                id="quick-search-expand"
+                data-search="quickSearch"
+                aria-controls="quickSearch"
+                aria-label="{{lang 'common.search'}}"
+                >
+
+                <img class="lazyload fas fa-search" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-open-magnifying-glass.png?t=1647839190&_gl=1*m339h0*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzgzODg1Ni40Ni4xLjE2NDc4MzkxOTMuMzE.'}}" width="20" height="21" alt="search icon fas" />
+
+                </button>
+            </li>
+            {{#if settings.gift_certificates_enabled}}
+                <li class="navUser-item">
+                    <a class="navUser-action"
+                    href="{{urls.gift_certificate.purchase}}"
+                    aria-label="{{lang 'common.gift_cert'}}"
+                    >
+                        {{lang 'common.gift_cert'}}
+                    </a>
+                </li>
+            {{/if}}
+            <li class="navUser-item navUser-item--account">
+                {{#if customer}}
+                    <!--<a class="navUser-action"-->
+                    <!--href="{{urls.account.index}}"-->
+                    <!--aria-label="{{lang 'common.account'}}"-->
+                    <!--    {{lang 'common.account'}}-->
+                    <!--</a>-->
+                    <a class="navUser-action" href="{{urls.account.index}}" aria-label="{{lang 'common.account'}}">
+
+                    <img class="lazyload fa fa-user-circle" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-awesome-user-circle.png?t=1647839191&_gl=1*1bw8rt7*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzgzODg1Ni40Ni4xLjE2NDc4MzkxOTMuMzE.'}}" width="20" height="21" alt="account circle" />
+
+                    </a>
+                    <a class="navUser-action" href="{{urls.auth.logout}}" aria-label="{{lang 'common.logout'}}">
+                        {{lang 'common.logout'}}
+                    </a>
+
+                {{else}}
+                    <a class="navUser-action"
+                    href="{{urls.auth.login}}"
+                    aria-label="{{lang 'common.login'}}"
+                    >
+
+                    <img class="lazyload fa fa-user-circle" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-awesome-user-circle.png?t=1647839191&_gl=1*1bw8rt7*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzgzODg1Ni40Ni4xLjE2NDc4MzkxOTMuMzE.'}}" width="20" height="21" alt="account circle icon" />
+
+                    </a>
+
+                {{/if}}
+            </li>
+            <li class="navUser-item navUser-item--cart">
+                <a class="navUser-action"
+                data-cart-preview
+                data-dropdown="cart-preview-dropdown"
+                data-options="align:right"
+                href="{{urls.cart}}"
+                aria-label="{{lang 'cart.nav_aria_label'}}"
+                >
+                    <span class="navUser-item-cartLabel">
+
+                        <img class="lazyload fa fa-shopping-cart" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-awesome-shopping-cart.png?t=1647839191&_gl=1*1bw8rt7*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzgzODg1Ni40Ni4xLjE2NDc4MzkxOTMuMzE.'}}" width="23" height="21" alt="cart icon img" />
+                    <span class="countPill cart-quantity"></span>
+
+                </a>
+
+                <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+    {{> components/common/quick-search name='nav-quick-search'}}
+    
+</div>
+   
+</header>
+
+<div class="navigation-sticky" style=" top: 146px; margin-top: 0; ">  <!-- -->
+    <div class="d-flex justify-content-center mx-auto w-75">
+        <div class="d-flex justify-content-around w-75 under-con">
+            <div><img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/shipping-icon-02.png?t=1637199032&_gl=1*qavau1*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNzE5Nzc3MC4zODYuMS4xNjM3MTk5MDMxLjM3'}}" class="mr-2" width="28" height="25" alt="Shipping Icon"><span class="mr-2">Free, no-contact delivery</span></div>
+            <div><img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/100-night-02.png?t=1637199031&_gl=1*qavau1*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNzE5Nzc3MC4zODYuMS4xNjM3MTk5MDMxLjM3'}}" class="mr-2" alt="Night Icon" width="28" height="25"><span class="mr-2" >100-night risk-free trial</span> </div>
+            <div><img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/header-warranty-icon.png'}}" class="mr-2" als="Forever Warranty" width="28" height="25"><span class="mr-2">Forever warranty</span> </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="box"></div> -->
+
+<style>
+    li.navUser-item.navUser-item--account {
+        display: flex;
+    }
+    li.navUser-item.navUser-item--account a:hover{
+        color: #132448;
+    }
+    li.navUser-item.navUser-item--account a[aria-label="Sign out"]{
+        padding: 1rem;
+    }
+    #font\ toppers{
+        font-size: 13px;
+        font-family: 'Raleway' !important;
+        font-size: 16px;
+    }
+    span#font {
+        font-family: 'Raleway' !important;
+        font-size: 16px;
+    }
+
+    .mattreses-subMenu.dropdown-open {
+        width: 55% !important;
+        left: 15% !important;
+        height: auto;
+    }
+    .dropdown-open{
+        width: 85%;
+        left: 8% !important;
+        height: auto;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transform-origin: top center;
+        animation: slideDown 400ms ease-in-out forwards;
+        border-top: 0;
+        transition: 1s ease-in-out all;
+        /* border-top: 1px solid #e5e5e5; */
+    }
+    .navPage-subMenu{
+        height: auto !important;
+        animation: slideDown 300ms ease-in-out forwards;
+        transition: 0.3s ease-in-out all;
+    }
+
+    @keyframes slideDown {
+        0% { 
+            opacity: 0;
+            transform: translateY(-60px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .slideUp{
+        animation:slideUp 300ms ease-in-out forwards;
+        transform-origin: bottom center;
+    }
+    @keyframes slideUp{
+        0% { 
+            opacity: 0;
+            transform: translateY(0);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(-60px);
+        }
+    }
+
+    .animatedown{
+        animation: growDown 200ms ease-in-out forwards;
+        transform-origin: top center;
+    }
+
+    @keyframes growDown {
+        0% {
+            transform: scaleY(0)
+        }
+        80% {
+            transform: scaleY(1.1)
+        }
+        100% {
+            transform: scaleY(1)
+        }
+    }
+
+    @keyframes rotateY {
+        0% {
+            transform: rotateY(90deg)
+        }
+        80% {
+            transform: rotateY(-10deg)
+        }
+        100% {
+            transform: rotateY(0)
+        }
+    }
+    .navPages-list:not(.navPages-list-depth-max) .navPages-action.has-subMenu + .navPage-subMenu .navPage-subMenu-list{
+        width: 100% !important;
+
+    }
+
+    .box{
+        width: 400px;
+        height: 150px;
+        background: #f0e68c;
+        border: 1px solid #a29415;
+    }
+    .custom-bed-nav > .navPage-subMenu{
+        width: 70% !important;
+    }
+    div#navPages-29 .custom-bed-nav > .navPage-subMenu {
+        width: 70% !important;
+    }
+    
+    .banners a {
+        color: white;
+        border-radius: 8px;
+        color: #264da3;
+        font-family: Montserrat;
+        font-weight: 700;
+        background-color: #fff;
+        padding: 2px 10px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0;
+    }
+
+    #navPages-29{
+        padding-bottom: 1rem !important;
+    }
+
+
+    @media screen and (min-width: 801px) and (max-width: 1024px){
+    .mobileMenu-toggle{
+        display: inline-block;
+    }
+    .header-div{
+        width: 100%;
+        height: 4rem;
+    }
+    .form-prefixPostfix.wrap.hide {
+        display: block;
+        left: 0;
+    }
+    .navPages-container{
+        display: none;
+    }
+    .navPages ul {
+        width: 100%;
+        list-style: none;
+        text-transform: uppercase;
+        margin-left: 0;
+        line-height: 1;
+    }
+    .navUser-item:not(.navUser-item--cart) {
+        display: none;
+    }
+
+    header.header.header-bannerimg{
+        height: 4em;
+    }
+    .navPages-container.is-open {
+        display: block!important;
+        padding-top: 1.5rem;
+        z-index: 20;
+        left: 0;
+        margin: 0;
+        position: fixed;
+        background-color: #174567;
+        top: 7rem;
+        overflow-y: scroll;
+    }
+    .navPages{
+        padding: 1.5rem;
+    }
+    ul.navPages-list {
+        display: block;
+    }
+    .navPages ul.navPages-list li{
+        width: 100%;
+        color: #fff;
+    }
+    .navPages-quickSearch{
+        display: block;
+    }
+    .header-logo{
+        margin: 0 auto;
+    }
+    a.navPages-action{
+        color: #fff !important;
+        text-align: left;
+    }
+    .form-prefixPostfix .button{
+        width: 100%;
+    }
+    ul.navPages-list.navPages-list--user{
+        display: inline-block;
+    }
+     
+    li.navUser-item.navUser-item--cart {
+        display: inline;
+        float: right;
+        position: fixed;
+        right: 1%;
+        top: 5%;
+        /* top: 0; */
+    }
+    .navigation-sticky{
+        display: none !important;
+    }
+    .header-div.sticky li.navUser-item.navUser-item--cart{
+        top: 0;
+    }
+    .body.home-body section.heroCarousel.mb-2.mt-4 {
+        margin-top: 0 !important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .header.is-open .navPages-container.is-open{
+        top: 7.2rem;
+        /*top: 4rem;*/
+        padding-top: 0;
+    }
+    .header-div.sticky .navPages-container.is-open{
+        top: 4rem !important;
+    }
+    li.navUser-item.navUser-item--account{
+        display: none;
+    }
+    .navPages-action svg {
+        fill: #fff;
+        stroke: #fff;
+    }
+    .navPages-list:not(.navPages-list-depth-max) .navPages-action-moreIcon {
+        height: 1rem;
+        width: 1rem;
+    }
+    li.navUser-item.navUser-item--cart{
+        top: 10.5%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+    .header.is-open .navPages-container.is-open {
+        top: 7rem;
+        /* top: 4rem; */
+    }
+}
+@media screen and (max-width: 962px) {
+    li.navUser-item.navUser-item--cart{
+        top: 10.5%;
+    }
+    .header.is-open .navPages-container.is-open {
+        /*top: 9rem;*/
+        /* top: 4rem; */
+    }
+}
+@media screen and (max-width: 800px) {
+    .navPages{
+        max-height: calc(100% - 60px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+@media screen and (max-width: 768px) {
+    .header.is-open .navPages-container.is-open {
+        top: 8.8rem;
+        /* top: 4rem; */
+    }
+    
+}
+@media screen and (max-width: 568px) {
+
+    header.header.header-bannerimg .header-div:not(.sticky) .navPages {
+        max-height: calc(100% - 140px);
+        overflow-y: auto;
+    }
+    
+}
+
+@media screen and (max-width: 312px) {
+    .header.is-open .navPages-container.is-open {
+        top: 10.5rem;
+        /* top: 4rem; */
+    }
+}
+
+@media screen and (max-width: 241px) {
+    .header.is-open .navPages-container.is-open {
+        top: 12rem;
+        /* top: 4rem; */
+    }
+}
+.navPages-list:not(.navPages-list-depth-max) .navPages-action-moreIcon {
+    height: 0.7857142857rem;
+    width: 0.7857142857rem;
+}
+</style>
+
+<!-- {{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}} -->

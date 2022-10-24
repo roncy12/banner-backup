@@ -1,0 +1,55 @@
+{{#partial "page"}}
+<style type="text/css" media="all">
+    body.pages-body .footer {
+        margin-top: 0!important;
+    }
+    span#stamped-badge-title {
+        color: #fff;
+    }
+    span#stamped-badge-total {
+        color: #fff;
+    }
+    
+</style>
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<main class="page {{page.title}}-page">
+    {{#unless theme_settings.hide_page_heading }}
+        <h1 class="page-heading">{{ page.title }}</h1>
+    {{/unless}}
+
+    {{#if page.sub_pages}}
+    <nav class="navBar navBar--sub">
+        <ul class="navBar-section account-navigation">
+        {{#each page.sub_pages}}
+            <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </nav>
+    {{/if}}
+
+    {{{region name="page_builder_content"}}}
+
+    <div class="page-content page-content--centered w-100">
+        {{#replace '%%Syndicate%%' page.content}}
+            {{> components/page/rss_feed}}
+        {{else}}
+            <p>{{{page.content}}}</p>
+        {{/replace}}
+    </div>
+
+    {{#if page.feed}}
+        <ul>
+            {{#each page.feed}}
+                <li>
+                    <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                    <p>{{content}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

@@ -1,0 +1,81 @@
+---
+blog:
+    posts:
+        limit: 3
+        pages: 3
+        summary: 200
+---
+{{#partial "page"}}
+
+<!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} -->
+
+<main class="page">
+    <div class="blogbanner-section">
+        <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/blog-banner.jpg?t=1599722308&amp;_ga=2.46110564.1918111745.1599697146-2022119561.1571639426'}}" alt="blog-image-banner" width="100%">
+        <div class="abs-con">
+            {{#unless theme_settings.hide_blog_page_heading }}
+                <h1 class="page-heading blog-center">{{ blog.name }}</h1>
+            {{/unless}}
+        </div>
+    
+    </div>
+    
+    <!-- <div class="image-banner">
+        {{#unless theme_settings.hide_blog_page_heading }}
+            <h1 class="page-heading blog-center">{{ blog.name }}</h1>
+        {{/unless}}
+    </div> -->
+
+    <section class="articlecontainer">
+    <div class="left-half">
+            <article class="sectionarticle">
+        <h2 class="blogpage-title">Recent Posts</h2>
+    <!--     {{#each blog.posts}}
+            {{> components/blog/post post=this}}
+        {{/each}} -->
+        {{#each blog.posts}}
+            {{> components/blog/post post=this anchor_tags=true }}
+        {{/each}}
+            </article>
+        </div>
+        <div class="right-half">
+            <div class="newsletter-blog">
+                <h5>Newsletter</h5>
+                <p>Get the latest updates on new products and upcoming sales</p>
+                <form class="form" action="/subscribe.php" method="post">
+                    <fieldset class="form-fieldset">
+                        <input type="hidden" name="action" value="subscribe">
+                        <input type="hidden" name="nl_first_name" value="bc">
+                        <input type="hidden" name="check" value="1">
+                        <div class="form-field">
+                            <label class="form-label is-srOnly" for="nl_email">Email Address</label>
+                            <div class="form-prefixPostfix wrap">
+                                <input class="form-input" id="nl_email" name="nl_email" type="email" value="" placeholder="Your email address">
+                            <div class="input-container">
+                                <input class="button button--primary form-prefixPostfix-button--postfix blog-btn" type="submit" value="">
+                                <i class="fas fa-envelope-open-text icon" aria-hidden="true"></i>        
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <div class="pagination-blog">
+        {{> components/common/paginator pagination.blog}}
+    </div>
+</main>
+
+{{/partial}}
+{{> layout/custom-blogbase}}
+<style>
+    .blogbanner-section, .blogbanner-section img{
+        position: relative;
+    }
+
+    .body{
+        margin-top: 0;
+    }
+</style>

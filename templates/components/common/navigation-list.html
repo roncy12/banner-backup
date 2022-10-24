@@ -1,0 +1,90 @@
+{{#if children}}
+<div class="navPage-subMenu ml-0" id="navPages-{{id}}" aria-hidden="true" tabindex="-1" style="padding-top: 0 !important">
+    <ul class="navPage-subMenu-list navigation-slick d-block ml-4">
+
+
+        {{#each children}}
+            <li class="navPage-subMenu-item" style="width: 356px;">
+                {{#if children}}
+                    <a class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                       href="{{url}}"
+                       aria-label="{{name}}"
+                    >
+                        {{name}}
+                        <span class="collapsible-icon-wrapper"
+                            data-collapsible="navPages-{{id}}"
+                            data-collapsible-disabled-breakpoint="medium"
+                            data-collapsible-disabled-state="open"
+                            data-collapsible-enabled-state="closed"
+                        >
+                        <i class="fa fa-chevron-down icon navPages-action-moreIcon" aria-hidden="true">
+                        </i>
+                        </span>
+                    </a>
+                    <ul class="navPage-childList" id="navPages-{{id}}">
+                        {{#each children}}
+                        <li class="navPage-childList-item">
+                            <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}"
+                               href="{{url}}"
+                               aria-label="{{name}}"
+                            >
+                                {{name}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                {{else}}
+
+                {{#if (lowercase (dashcase name)) '===' "weekender-600-thread-count-cotton-blend-sheet-set" }}                 
+                    <a class="navPage-subMenu-action  w-48 p-0 navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}" id="active-revert">  600 TC Cotton-Blend Sheet Set
+                        <img class="lazyload mt-2 mb-2" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn (concat '../img/bedding/nav/' (concat  (lowercase (dashcase name)) '.webp'))}}"  alt="{{lowercase name}}"  width="400"
+                        height="400">
+                    </a>
+                    <p class="mt-0 nav-price mb-0">Starts at <b>$32.00</b></p>
+                {{else}}
+                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}} mb-0"
+                       href="{{url}}"
+                       aria-label="{{name}}" id="active-revert"
+                    >
+                        {{name}}
+                        <img class="lazyload mt-2" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn (concat '../img/bedding/nav/' (concat  (lowercase (dashcase name)) '.webp'))}}"  alt="{{lowercase name}}" width="400"
+                        height="400">
+                    </a>
+                    {{#if (lowercase (dashcase name)) '===' "weekender-sherpa-blanket" }}  
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$13.00</b></p>    
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "anchor-weighted-blanket" }}      
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$54.00</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "zoned-activedough-cooling-gel" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$40.00</b></p>                  
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "gelled-microfiber" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$70.00</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "pr1me-smooth-mattress-protector" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$23.00</b></p> 
+                    {{/if}} 
+                    {{#if (lowercase (dashcase name)) '===' "five-5ided-smooth-mattress-protector" }}                  
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$30.00</b></p>
+                    {{/if}}
+                    {{#if (lowercase (dashcase name)) '===' "italian-artisan-sheet-set" }}   
+                        <p class="mt-0 nav-price mb-0">Starts at <b>$82.00</b></p>   
+                    {{/if}}
+                    {{/if}}
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+
+</div>
+
+{{else}}
+<a class="navPages-action{{#if is_active}} activePage{{/if}}"
+   href="{{url}}"
+   aria-label="{{name}}"
+>
+    {{name}}
+</a>
+{{/if}}
+

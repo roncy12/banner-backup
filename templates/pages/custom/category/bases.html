@@ -1,0 +1,316 @@
+{{#partial "page"}}
+<style>
+    header.header.header-bannerimg{
+        border: none;
+    }
+    p, h4{
+        font-family: 'Open Sans' !important;
+        font-size: 14px !important;
+    }
+    .page-bases .icons{
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
+   .transform {
+      transform: unset !important;
+   }
+   #question-icon{
+      cursor: pointer;
+   }
+
+    @media (max-width: 992px){
+        .page-bases .footer-banner img{
+            height: 259px;
+        }
+    }
+    @media (max-width: 730px){
+        .page-bases .carousel-product{
+            row-gap: 2rem;           
+        }
+    }   
+    
+    @media (max-width: 568px){
+        .page-bases .footer-banner .w-60{
+            display: none;
+        }
+        .page-bases .footer-banner img{
+            /*object-position: right;*/
+            object-fit: cover;
+        }
+        .d-flex.flex-column.align-items-center.justify-content-left {
+            margin-left: 2rem !important;
+            width: 100%;
+        }
+        
+        .page-bases .body-banner-container .banner-container-body .resa{
+            width: 75%;
+        }
+    }
+   @media (max-width: 420px){    
+     .page-bases .body-banner-container .banner-container-body img{
+        display: none;   
+     }
+    .page-bases .body-banner-container .banner-container-body {
+        background: url("https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/body-banner.png?t=1636963658&_gl=1*rlahjc*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0rem 131px;
+    }
+   }
+    @media (max-width: 380px){
+        .page-bases .body-banner-container .banner-container-body .resa{
+            width: 100%;
+        }   
+    }
+</style>
+<div class="page-bases page-mattresses">
+      <div class="bannerz" style="margin-top: 165px;">
+         <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/banner.png?t=1636963647&_gl=1*dly7hx*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" width="100%" alt="">
+         <div class="blurb res">
+                  <h1 style="color:white;">Bases</h1>
+                  <h4>Our quality bases help your mattress stay durable for years, giving unprecedented value for money you cannot find elsewhere.</h4>
+         </div>
+      </div>
+      <div class="carousel-product">
+
+                  <div class="product-column">
+                           <div class="product-column-image">  
+                                    <div class="relative">
+                                       <img class="lazyload" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/adjustable-frames.png?t=1632099766&_gl=1*zn8bhz*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" alt="">
+                                       <span class="new-badge">NEW</span>
+                                    </div>
+                           </div>
+                           <h2>Adjustable Frames</h2>
+                           <p>Adjustables combine luxurious sleep with the health benefits of sleeping elevated.</p>
+                           <br>
+                           <a href="/bases/adjustable-frames/" class="">SHOP</a>  
+                           <p class="price-small price-color">Starts at $879.99</p>
+                  </div>
+                  <div class="product-column">
+                           <div class="product-column-image">  
+                                 <div class="relative">
+                                    <img class="lazyload" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/metal-frames.png?t=1636963651&_gl=1*zn8bhz*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" alt="">
+                                    <span class="new-badge">NEW</span>
+                                 </div>
+                           </div>
+                           <h2>Metal Frames</h2>
+                           <p>Metal beds eliminate the need for box springs and provide good mobility and support.</p>
+                           <br>
+                           <a href="/bases/metal-frames/" class="">SHOP</a>
+                           <p class="price-small price-color">Starts at $169.99</p>
+                  </div>
+                <div class="product-column">
+                           <div class="product-column-image">
+                                 <div class="relative">
+                                    <img class="lazyload" src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/platform-beds.png?t=1636963650&_gl=1*zn8bhz*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" alt="">   
+                                    <span class="new-badge">NEW</span>
+                                  </div>
+                           </div>
+                           <h2>Platform Beds</h2>
+                           <p>Platform beds are rigid, sturdy bases that provide solid support and a stylish look.</p>
+                           <br>
+                           <a href="/bases/platform-beds/" class="">SHOP</a>
+                           <p class="price-small price-color">Starts at $269.99</p>
+                        
+                  </div>
+      </div>
+
+      <div class="icons">
+               <div class="icon-columns d-none">
+                           <img src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/bases/made-in-usa.png'}}" alt="">  
+                           <p>Made in the USA</p> 
+               </div>
+               <div class="icon-columns">
+                           <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/free-shipping.png?t=1636963653&_gl=1*rlahjc*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" alt="">   
+                           <p>Free Shipping</p>
+               </div>
+               <div class="icon-columns d-none">
+                           <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/100-night-sleep-trial.png?t=1636963655&_gl=1*rlahjc*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" alt=""> 
+                           <p>100-Night Sleep Trial</p>
+               </div>
+               <div class="icon-columns">
+                           <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/certified-products.png?t=1636963654&_gl=1*rlahjc*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" alt="">
+                           <p>Certified Products</p>   
+               </div>
+                <div class="icon-columns">
+                  <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/original/image-manager/easy-setup-new.png?t=1658467124&_gl=1*4p727c*_ga*ODk3ODY0MTgwLjE2NDg4MDI1OTE.*_ga_WS2VZYPC6G*MTY1ODQ2NjYzMS4zODAuMS4xNjU4NDY3MTI3LjYw'}}" alt="">
+                  <p>Easy Setup</p>   
+               </div>
+               <div class="icon-columns">
+                  <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/original/image-manager/sturdy-new.png?t=1658467126&_gl=1*1vowy3b*_ga*ODk3ODY0MTgwLjE2NDg4MDI1OTE.*_ga_WS2VZYPC6G*MTY1ODQ2NjYzMS4zODAuMS4xNjU4NDY3MTI3LjYw'}}" alt="">
+                  <p>Sturdy Build</p>   
+               </div>
+               <div class="icon-columns d-none">
+                           <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/long-term-warranty.png?t=1636963656&_gl=1*rlahjc*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" alt="">
+                           <p>Long-term Warranty</p>   
+               </div>
+      </div>
+      <div class="body-banner-container">
+               <div class="banner-container-body">
+                  <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/body-banner.png?t=1636963658&_gl=1*rlahjc*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" width="100%" class="lazyload" alt="">
+                  <div class="blurb resa">
+                              <h3 style="margin-bottom:0;font-weight:600;"> </h3>
+                              <h1 style="margin-top:5px; line-height: 1.2;">The foundation of iconic sleep</h1>
+                              <p>Our mattress bases offer extra support for your mattress, leading to a longer mattress lifespan and a firmer, better sleep.</p>
+                  </div>
+               </div>
+      </div>
+
+      <div class="frequently-asked-question-container">
+               <h1>Frequently Asked Questions</h1>
+
+               <div class="row">
+                           <div class="d-flex align-item-center justify-content-between w-100" id="question-icon">
+                                    <h3 class="default-label-color">Do Icon Sleep mattresses work on adjustable bases?</h3>
+                                    <img src="https://store-z2qdisybty.mybigcommerce.com/content/svgs/circle-plus-solid.svg" alt="toggle-icon" style="height: auto; width: 25px; transform: rotate(45deg);">
+                           </div>
+                           <div class="content-ask">
+                              <p>Yes, all Icon Sleep mattresses are compatible with adjustable beds.</p>
+                           </div>
+               </div>
+               <div class="row">
+                            <div class="d-flex align-item-center justify-content-between w-100" id="question-icon">
+                                    <h3 class="default-label-color">Is bed base the same as a box spring?</h3>
+                                    <img src="https://store-z2qdisybty.mybigcommerce.com/content/svgs/circle-plus-solid.svg" alt="toggle-icon" style="height: auto; width: 25px; transform: rotate(45deg);">
+                           </div>
+                           <div class="content-ask">
+                              <p>Not really, no. While they both provide a base support layer for any mattress type, box springs add that extra “give” feeling and increase breathability. Bases, on the other hand, are for overall mattress support.</p>
+                           </div>
+               </div>
+               <div class="row">
+                            <div class="d-flex align-item-center justify-content-between w-100" id="question-icon">
+                                    <h3 class="default-label-color">Do you really need a base for a mattress?</h3>
+                                    <img src="https://store-z2qdisybty.mybigcommerce.com/content/svgs/circle-plus-solid.svg" alt="toggle-icon" style="height: auto; width: 25px; transform: rotate(45deg);">
+                           </div>
+                           <div class="content-ask">
+                              <p>For mattresses to reach their intended lifespan of more or less 10 years, they need critical support that mattress bases provide. This is to keep sagging and degradation at bay.</p>
+                           </div>
+               </div>
+      </div>
+
+      <div class="icons-sleep-essentials-container" style="display: none">
+            <div class="header-essentials">
+               <h1 class="default-label-color">Iconic Bases Essentials</h1>
+            </div>
+            <div class="body-carousel">
+               <div class="carousel-column">
+                  <div class="d-flex justify-content-center"><img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/original/image-manager/newmattress-img.png?t=1658389202&_gl=1*1wunc1d*_ga*ODk3ODY0MTgwLjE2NDg4MDI1OTE.*_ga_WS2VZYPC6G*MTY1ODM4OTA0My4zNzYuMS4xNjU4Mzg5MjA1LjQ4'}}" class="lazyload w-100" alt=""></div>
+                  <div class="d-flex space-between bott">
+                        <div class="d-block">
+                              <h3 class="default-label-color">Mattress</h3>
+                              <p class="m-0 price-color" style="font-size:9pt;">Starts at <b>$199.99</b></p>
+                        </div>
+                        <a href="/search.php?search_query=cool%20gel">SHOP</a>
+                  </div>
+               </div>
+               <div class="carousel-column">
+                  <div class="d-flex justify-content-center"><img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/toppers.png?t=1636963662&_gl=1*exmwcx*_ga*MTgzNTE5MzI1My4xNjE3Nzc3MjAy*_ga_WS2VZYPC6G*MTYzNjk1Njc2NC4zNzcuMS4xNjM2OTYzNjI3LjYw'}}" class="lazyload w-100"alt=""></div>
+                  <div class="d-flex space-between bott">
+                     <div class="d-block">
+                           <h3 class="default-label-color">Toppers</h3>
+                           <p class="m-0 price-color" style="font-size:9pt;">Starts at <b>$129.99</b></p>
+                     </div>
+                     <a href="/toppers/">SHOP</a>
+                  </div>
+               </div>
+               <div class="carousel-column">
+                  <div class="d-flex justify-content-center"><img src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/bases/bedding.png'}}" class="lazyload w-100"alt=""></div>
+                  <div class="d-flex space-between bott">
+                     <div class="d-block">
+                           <h3 class="default-label-color">Bedding</h3>
+                           <p class="m-0 price-color" style="font-size:9pt;">Starts at <b>$29.99</b></p>
+                     </div>
+                     <a href="/bedding/">SHOP</a>
+                  </div>
+               </div>
+            </div>
+      </div>
+
+      <div class="footer-banner relative m-auto" style="width:93%; display: none;">
+            <img src="{{cdn 'https://store-z2qdisybty.mybigcommerce.com/content/bases/footer-banner.png'}}" class="lazyload w-100"alt="">
+            <div class="absolute w-100 t-0 l-0 d-flex h-100">
+                  <div class="w-100 relative d-flex">
+                     <div class="d-flex align-items-center justify-content-center">
+                     <div class="d-flex flex-column align-items-center justify-content-left" style='margin-left:50px;'>
+                        <h1 style="padding-left:20px;color:white;font-weight:500;line-height:2.5rem;text-align:left;width:450px;"  class="bases p-0 w-100">We only make dreaming better.
+Discover Icon Sleep.</h1>
+                        <div class="w-100" style="margin-left:20px;"> <a href="https://icon-sleep.com/search.php?search_query=bases">Shop Mattresses</a></div>
+                     </div>
+                  </div>
+                  <div class="w-60 relative"></div>
+                  </div>
+            </div>
+      </div>
+
+      <div class="w-80 icon-sleep-e relative m-auto" style="margin-top:50px !important;">
+         <h1 id="iconic">Iconic Bases Essentials</h1>
+         <div class="w-100 d-flex relative">
+                  <div class="w-50 mr-2 relative">
+                           <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/original/image-manager/mattress-suggested-category.png'}}" class="lazyload w-100" alt="">
+                           <span class="badge-bg-color text-white py-1 px-3" style="border-radius:25px;">Starts at <b>$199.99</b></span>
+                           <div class="e-footer">
+                           <div class="d-flex space-between align-items-center p-3">
+                                             <div class="first w-70">
+                                                      <h1 class="m-0 text-left">Mattress</h1>
+                                                      <p class="m-0 text-left">The core of the Icon Sleep experience.</p>
+                                             </div>                  
+                                             <div class="second d-block w-30">
+                                                      <a href="/mattresses/"class="d-block w-100 py-2 shop-btn-color text-white text-center">SHOP NOW</a>
+                                             </div>
+                                    </div>
+                           </div>
+                  
+                  </div>
+                  <div class="w-50 ml-2 relative">
+                     <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/images/stencil/original/image-manager/toppers-suggested-category.png'}}" class="lazyload w-100" alt="">
+                     <span class="badge-bg-color text-white py-1 px-3" style="border-radius:25px;">Starts at <b>$129.99</b></span>
+                     <div class="e-footer">
+                              <div class="d-flex space-between align-items-center p-3">
+                                       <div class="first w-70">
+                                                <h1 class="m-0 text-left">Toppers</h1>
+                                                <p class="m-0 text-left">Add extra comfort to your nightly slumber.</p>
+                                       </div>                  
+                                       <div class="second d-block w-30">
+                                                <a href="/toppers/"class="d-block w-100 py-2 shop-btn-color text-white text-center">SHOP NOW</a>
+                                       </div>
+                              </div>
+                     </div>
+            </div>
+         </div>
+</div>
+
+<div class="authentic-reviews mb-4">
+   <div class="reviews-bg">
+      <div class="flex-section">
+         <div>
+            <h2>See Why People Think We're Iconic</h2>
+            <p>Authentic reviews and feedback from real customers</p>
+         </div>
+         <div>
+            <a href="/reviews/" class="mt-5" target="_blank">View All Reviews</a>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+<script> 
+$(document).ready(function(){
+   
+   $('.nav-button-container').on('click',function(){
+         $(this).parent().parent().toggleClass('hide-me');
+         $(this).children().eq(1).toggleClass('d-none');
+         
+
+   });
+   
+    $(".frequently-asked-question-container #question-icon").each(function(index) {
+         $(this).on('click',function(){
+            $(this).find('img').toggleClass('transform');
+            $(this).parent().toggleClass('hide-me');
+         });
+    });
+});
+
+</script>
+{{/partial}}
+{{> layout/base}}

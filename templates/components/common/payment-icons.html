@@ -1,0 +1,30 @@
+{{#with theme_settings}}
+    {{#or show_accept_amex show_accept_discover show_accept_mastercard show_accept_paypal show_accept_visa show_accept_amazonpay show_accept_googlepay show_accept_klarna}}
+    <div class="footer-payment-icons">
+        {{#if show_accept_amex}}
+        <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-awesome-cc-amex.png?t=1647933239&_gl=1*1j435o7*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyODMyOC41Mi4xLjE2NDc5MzMyMTAuNTg." alt="payment-1" width="31" height="24">
+        {{/if}}
+        {{#if show_accept_discover}}
+        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-discover"></use></svg>
+        {{/if}}
+        {{#if show_accept_mastercard}}
+        <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-metro-mastercard.png?t=1647933241&_gl=1*fruyev*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyODMyOC41Mi4xLjE2NDc5MzMyMTAuNTg." alt="payment-2" width="31" height="24">
+        {{/if}}
+        {{#if show_accept_paypal}}
+        <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-awesome-cc-paypal.png?t=1647933240&_gl=1*1p07qvc*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyODMyOC41Mi4xLjE2NDc5MzMyMTAuNTg." alt="payment-3" width="31" height="24">
+        {{/if}}
+        {{#if show_accept_visa}}
+        <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/icon-awesome-cc-visa.png?t=1647933241&_gl=1*1p07qvc*_ga*Nzk0NzIwMzUxLjE2NDY2MzgxMzc.*_ga_WS2VZYPC6G*MTY0NzkyODMyOC41Mi4xLjE2NDc5MzMyMTAuNTg." alt="payment-4" width="31" height="24">
+        {{/if}}
+        {{#if show_accept_amazonpay}}
+        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-amazonpay"></use></svg>
+        {{/if}}
+        {{#if show_accept_googlepay}}
+        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-googlepay"></use></svg>
+        {{/if}}
+        {{#if show_accept_klarna}}
+        <svg class="footer-payment-icon"><use xlink:href="#icon-logo-klarna"></use></svg>
+        {{/if}}
+    </div>
+    {{/or}}
+{{/with}}

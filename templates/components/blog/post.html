@@ -1,0 +1,65 @@
+
+<article class="blog blog-flex">
+
+    <div class="blog-post-figure">
+        <div class="blog-block">
+        {{#if post.thumbnail}}
+            <figure class="blog-thumbnail blog-img">
+                {{#if anchor_tags}}
+                <a href="{{post.url}}">
+                {{/if}}    
+                    {{> components/common/responsive-img
+                        image=post.thumbnail
+                        fallback_size=theme_settings.blog_size
+                        lazyload=theme_settings.lazyload_mode
+                    }}
+                    {{#if anchor_tags}}
+                </a >
+                {{/if}} 
+            </figure>
+        {{/if}}            
+        </div>
+    </div>
+
+    <div class="blog-post-body" id="block">
+        <header class="blog-header">
+            <h2 class="blog-title">
+                {{#if anchor_tags}}
+                <a href="{{post.url}}">
+                {{/if}}   
+                  {{post.title}}      
+                {{#if anchor_tags}}
+                  </a >
+                {{/if}} 
+            </h2>
+            <p class="blog-date" style="text-align: left;">{{#if post.author}}{{lang 'blog.posted_by' name=post.author}} on {{/if}}{{post.date_published}}</p>
+        </header>
+
+        <div class="blog-post link-more">
+            {{#if post.body}}
+                {{{post.body}}}
+            {{else}}
+               <p> {{{post.summary}}}</p>
+                {{#if post.show_read_more}}
+                     <a href="{{url}}" aria-label="{{post.title}} {{lang 'blog.read_more'}}">{{lang 'blog.read_post'}}<img src="https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/arrow.png?t=1599727737&amp;_ga=2.47160295.1918111745.1599697146-2022119561.1571639426" alt="Arrow Right"></a>  
+                {{/if}}
+            {{/if}}
+        </div>
+
+
+        {{#if show_tags}}
+            {{#if post.tags}}
+                <ul class="tags">
+                    {{#each post.tags}}
+                    <li class="tag">
+                        <a href="{{url}}">#{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/if}}
+
+        {{>components/common/share}}
+
+    </div>
+</article>

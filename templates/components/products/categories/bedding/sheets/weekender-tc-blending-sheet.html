@@ -1,0 +1,95 @@
+<div class="video-section-bg">
+    <div class="d-flex text-video-container">
+        <div class="text">  
+            <h2 class="text-light h3 mt-0">All the benefits of cotton in an easy to care for and wrinkle-free blend.</h2>
+            <p class="text-light">Keep the cotton side close to the skin for softness and the polyester side facing outward for a wrinkle-free look on top. The deep pocket on the fitted sheet stays in place and fits snugly.</p>
+        </div>
+        <div class="video-con">
+            <video controls onclick="this.paused?this.play():this.pause();">
+                <source src="https://store-z2qdisybty.mybigcommerce.com/content/product-videos/600_tc_cotton_blend.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+    </div>
+</div>
+
+<div class="faetures--section-bg pt-5">
+
+    <div class="faetures--section pt-4">
+        <div>
+            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/600-tc-cotton-blend-feature.png'}}" alt="features-img">
+        </div>
+        <div class="text-section m-auto">
+            <h2 class="h2 text-left mt-0 mb-4">Product Features</h2>
+
+            <div class="d-flex align-items-center">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">600-thread-count blend featuring 52% cotton, 42% polyester, and 5% Lyocell</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Cross weaved fabric is extra soft on onee side and wrinkled resistant on the other</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Deep pocket with elastic fits mattresses up to 18 inches deep</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Machine wash with warm water and dry on low heat</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Hypoallergenic protector is machine washable and
+                    dryer safe to keep your mattress fresh</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="dream-bg">
+    <div class="dreams-section flex-row-reverse">
+        <div class="img-section">
+            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/weeknder-blending-sheet-.png'}}" alt="" class="w-100 lazyload">
+        </div>
+        <div class="text-section" style="margin: auto auto auto 0;">
+            <ul id="case-list">
+                <li class="case active">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/upgraded-upholstry-icon.png'}}" alt="">
+                </li>
+                <li class="case">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/waterproof.png'}}" alt="">
+                </li>
+                <li class="case">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/softelegantlook-icon.png'}}" alt="">
+                </li>
+              </ul>
+
+            <div id="case-list" class="w-100">
+                <div class="case toDisplay active w-100">
+                    <h2 class="mt-5 mb-4 text-light text-uppercase">Premium Materials</h2>
+                    <p class="text-light">Specially woven cotton and lyocell blend on one side and polyester on the opposite side</p>
+                </div>
+                <div class="case toDisplay w-100">
+                    <h2 class="mt-5 mb-4 text-light text-uppercase">Moisture Wicking</h2>
+                    <p class="text-light">Designed so that soft and moisture wicking cotton and lyocell surface touches the skin and wrinkle</p>
+                </div>
+                <div class="case toDisplay w-100">
+                    <h2 class="mt-5 mb-4 text-light text-uppercase">Universal Fit</h2>
+                    <p class="text-light">Universal Fit" elastic nd extra-deep pockets ensures a secure fit for mattress depths 6 to 18 inches.</p>
+                </div>
+            </div>
+            <button id="prev" class="bg-transparent pl-0 pr-2"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="next" class="bg-transparent px-2"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>
+<div class="w-75 mx-auto text-center mt-0" style="margin-top: 3rem !important;" id="newreview-section">
+    <h2>Missing some reviews? No worries </h2>
+    <p>it’s mainly due to the pandemic situation disrupting our supply chains. Rest assured, however,<br> that our universally loved sheets will always be deserving of your 5-star review.  </p>
+</div>
+
+<div class="mt-0 review-counter" >
+    <div id="stamped-main-widget" data-widget-type="one-column" data-take-reviews='4' data-product-id="{{ product.id }}"></div>
+</div>

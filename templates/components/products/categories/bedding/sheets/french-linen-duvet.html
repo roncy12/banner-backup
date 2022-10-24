@@ -1,0 +1,98 @@
+<div class="video-section-bg">
+    <div class="d-flex text-video-container">
+        <div class="text">  
+            <h2 class="text-light h3 mt-0">Finest French-grown flax with an elegant vintage wash for a premium feel and look.</h2>
+            <p class="text-light">Pure linen revered among the highest quality in the world; flax grown in France.</p>
+        </div>
+        <div class="video-con">
+            <video controls onclick="this.paused?this.play():this.pause();">
+                <source src="https://store-z2qdisybty.mybigcommerce.com/content/product-videos/french_linen_duvet_set_-_product_video.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+    </div>
+</div>
+
+<div class="faetures--section-bg">
+    <h2 class="h2 text-center py-5 mt-0">Product Features</h2>
+    <div class="faetures--section">
+        <div>
+            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/heirloom-quality-linen-feature.png'}}" alt="features-img">
+        </div>
+        <div class="text-section m-auto">
+            <div class="d-flex align-items-center">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Made with the finest French-grown flax in the world from the Flanders region</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Pure linen is breathable, inherently temperature regulating, and durable due to a higher natural elasticity</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Patented Duv8t™ fastening system has eight corner and side loops, instead of the traditional four, for a more secure fit</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Vintage washed for a softer feel and relaxed, lived-in look, with added softness from every wash</p>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+                <span id="number-circle"></span>
+                <p class="mt-0 mb-0">Includes a duvet cover plus two shams and pairs with a compatible comforter</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dream-bg">
+    <div class="dreams-section flex-row-reverse">
+        <div class="img-section">
+            <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/heirloom-quality-linen-.png'}}" alt="" class="w-100 lazyload">
+        </div>
+        <div class="text-section" style="margin: auto auto auto 0;">
+            <ul id="case-list">
+                <li class="case active">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/hairlen-quality-linen.png'}}" alt="">
+                </li>
+                <li class="case">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/wash-icon.png'}}" alt="">
+                </li>
+                <li class="case">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/handdrawnhemstitching-icon.png'}}" alt="">
+                </li>
+                <li class="case">
+                    <img src="{{cdn 'https://cdn11.bigcommerce.com/s-z2qdisybty/product_images/uploaded_images/duvetsystem-icon-.png'}}" alt="">
+                </li>
+              </ul>
+
+            <div id="case-list" class="w-100">
+                <div class="case toDisplay active w-100">
+                    <h2 class="mt-5 mb-4 text-light text-uppercase">Heirloom Quality Linen</h2>
+                    <p class="text-light">Our pure French Linen Duvet Set is crafted using only the finest French-grown flax in the world. Using the highes-quality materials not only makes this duvet set more durable, but also adds to natural breathability and temperature-regulating properties of linen.</p>
+                </div>
+                <div class="case toDisplay w-100">
+                    <h2 class="mt-5 mb-4 text-light text-uppercase">Vintage-Washed Style</h2>
+                    <p class="text-light">To capture the beautifully casual feel of premium linen, we vintage wash each item before you take it home. This process makes them softer, with the lived-in look you love.</p>
+                </div>
+                <div class="case toDisplay w-100">
+                    <h2 class="mt-5 mb-4 text-light text-uppercase">All-Season Comfort</h2>
+                    <p class="text-light">The open percale weave lend even more breathability to breezy linen bedding. But linen doesn't just cool you down-it helps regulate your temperature. Linen keeps you comforatble in the summer and cozy in the winter thanks to superior moisture management properties.</p>
+                </div>
+                <div class="case toDisplay w-100">
+                    <h2 class="mt-5 mb-4 text-light text-uppercase">Duv8t™ Fastening System</h2>
+                    <p class="text-light">Our patented Duv8t™ fastening system keeps your duvet insert from shifting and bunching. Eight ties, located in the corners and middle of each side, hold your chosen duvet insert securely in place.</p>
+                </div>
+            </div>
+            <button id="prev" class="bg-transparent pl-0 pr-2"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="next" class="bg-transparent px-2"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>
+<div class="w-75 mx-auto text-center mt-0" style="margin-top: 3rem !important;" id="newreview-section">
+    <h2>Missing some reviews? No worries </h2>
+    <p>it’s mainly due to the pandemic situation disrupting our supply chains. Rest assured, however,<br> that our universally loved sheets will always be deserving of your 5-star review.  </p>
+</div>
+
+<div class="mt-0 review-counter" >
+    <div id="stamped-main-widget" data-widget-type="one-column" data-take-reviews='4' data-product-id="{{ product.id }}"></div>
+</div>
